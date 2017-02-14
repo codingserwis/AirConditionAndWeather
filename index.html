@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<title>Jakość Powietrza Opole</title>
+	</head>
+	<body>
+		<div id="map"></div>
+		<div class="air_data_container">
+			<h1 class="cont_header">Indeks jakości powietrza w Opolu</h1>
+			<div class="air_data">
+				<p class="place">Miejsce pomiaru: </p>
+				<p class="date_of_m">Data pomiaru: </p>
+				<p class="temp">Temperatura powietrza: </p>
+				<p class="humidity">Wilgotność: </p>
+				<p class="presure">Ciśnienie powietrza: </p>
+			</div>
+			<div class="polution_data">
+				<p class="pol">PM10</p>
+				<p class="pol_val"></p>
+				<p class="pol_index"></p>
+			</div>
+			<p class="owner"></p>
+		</div>
+		<script>
+		function initMap() {
+		var uluru = {lat: 50.66696111, lng: 17.92279722};
+		var map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 13,
+		center: uluru
+		});
+		var marker = new google.maps.Marker({
+		position: uluru,
+		map: map,
+
+		});
+		}
+		</script>
+		</script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyeImWmy1LmNodXs2VPwMnW0-T_W_rHLw&callback=initMap"
+		async defer></script>
+	</body>
+</html>

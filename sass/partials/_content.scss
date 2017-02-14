@@ -1,0 +1,82 @@
+html {
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	color: #5e5e5e;
+}
+body {
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	background-color: lightgray;
+		@include from_sm_desktop {
+			background-color: transparent;
+		}
+}
+#map {
+	display: none;
+	height: 100vh;
+	width: 100vw;
+		@include from_sm_desktop {
+			display: block;
+		}
+}
+.air_data_container {
+	margin: 10px;
+	min-width: 90%;
+	min-height: 90%;
+	padding: 15px;
+	background-color: rgba(255,255,255, 0.8);
+		p {
+			margin: 5px 0;
+		}
+		@include from_sm_desktop {
+			margin: 0;
+			position: absolute;
+			z-index: 1;
+			top: 15%;
+			left: 5%;
+			min-width: 26vw;
+			min-height: 58vh;
+		}
+}
+.polution_data {
+	display: inline-block;
+	position: relative;
+	min-width: 150px;
+	min-height: 150px;
+	left: calc(50% - 75px);
+	margin-top: 15px;
+	color: white;
+	padding: 10px;
+	text-align: center;
+		p {
+			span {
+				font-size: 4.5rem;
+			}
+		}
+		.pol_index {
+			span {
+				font-size: 1.2rem;
+				font-weight: 300;
+			}
+		}
+}
+.cont_header {
+	font-size: 1.2rem;
+	text-align: center;
+	//font-size: 1.45rem;
+	text-transform: uppercase;
+}
+.air_data {
+	margin-top: 10px;
+		p {
+			font-weight: 300;
+		}
+		span {
+			font-weight: 400;
+		}
+}
+.owner {
+	text-align: center;
+	font-size: 0.7rem;
+}

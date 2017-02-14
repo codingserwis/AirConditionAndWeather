@@ -1,0 +1,6 @@
+$desktop-res : 769px;
+@mixin from_sm_desktop {
+	@media (min-width: $desktop-res) {
+		@content;
+	}
+}
