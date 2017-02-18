@@ -8,42 +8,178 @@
 		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet">
 		<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 		<script type="text/javascript" src="js/app.js"></script>
+		<!-- <script src="https://use.fontawesome.com/b1f95d1c43.js"></script> -->
 		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css">
+		<link rel="stylesheet" type="text/css" href="css/weather-icons.min.css">
 		<title>Jakość Powietrza Opole</title>
 	</head>
 	<body>
 		<div id="map"></div>
-		<div class="air_data_container">
+		<div class="small_data_container">
 			<h1 class="cont_header">Indeks jakości powietrza w Opolu</h1>
-			<div class="air_data">
-				<p class="place">Miejsce pomiaru: </p>
-				<p class="date_of_m">Data pomiaru: </p>
-				<p class="temp">Temperatura powietrza: </p>
-				<p class="humidity">Wilgotność: </p>
-				<p class="presure">Ciśnienie powietrza: </p>
+			<div id="s_chab" class="station_short_info cf">
+				<h2>Os. Chabrów</h2>
+				<div class="short_data cf center">
+					<div id="ch_ijp" class="ijp_data left">
+						<h3>IJP</h3>
+						<p id="ch_ijp_val"></p>
+					</div>
+					<div id="ch_pm1" class="pm1_data left">
+						<h3>PM 0.1</h3>
+						<p id="ch_pm1_val"></p>
+					</div>
+					<div id="ch_pm2" class="pm2_data left">
+						<h3>PM 2.5</h3>
+						<p id="ch_pm2_val"></p>
+					</div>
+					<div id="ch_pm10" class="pm10_data left">
+						<h3>PM 10</h3>
+						<p id="ch_pm10_val"></p>
+					</div>
+				</div>
+				<div class="more_info_arrow right">
+					<i class="fa fa-caret-right" aria-hidden="true"></i>
+				</div>
 			</div>
-			<div class="polution_data">
-				<p class="pol">PM10</p>
-				<p class="pol_val"></p>
-				<p class="pol_index"></p>
+			<div id="s_pul" class="station_short_info cf">
+				<h2>ul. Pułaskiego</h2>
+				<div class="short_data cf center">
+					<div id="p_ijp" class="ijp_data left">
+						<h3>IJP</h3>
+						<p id="p_ijp_val"></p>
+					</div>
+					<div id="p_pm1" class="pm1_data left">
+						<h3>PM 0.1</h3>
+						<p id="p_pm1_val"></p>
+					</div>
+					<div id="p_pm2" class="pm2_data left">
+						<h3>PM 2.5</h3>
+						<p id="p_pm2_val"></p>
+					</div>
+					<div id="p_pm10" class="pm10_data left">
+						<h3>PM 10</h3>
+						<p id="p_pm10_val"></p>
+					</div>
+				</div>
+				<div class="more_info_arrow right">
+						<i class="fa fa-caret-right" aria-hidden="true"></i>
+					</div>
 			</div>
-			<p class="owner"></p>
+			<div id="s_pil" class="station_short_info">
+				<h2>Rondo Pileckiego</h2>
+				<div class="short_data cf center">
+					<div id="pi_ijp" class="ijp_data left">
+						<h3>IJP</h3>
+						<p id="pi_ijp_val"></p>
+					</div>
+					<div id="pi_pm1" class="pm1_data left">
+						<h3>PM 0.1</h3>
+						<p id="pi_pm1_val"></p>
+					</div>
+					<div id="pi_pm2" class="pm2_data left">
+						<h3>PM 2.5</h3>
+						<p id="pi_pm2_val"></p>
+					</div>
+					<div id="pi_pm10" class="pm10_data left">
+						<h3>PM 10</h3>
+						<p id="pi_pm10_val"></p>
+					</div>
+				</div>
+				<div class="more_info_arrow right">
+						<i class="fa fa-caret-right" aria-hidden="true"></i>
+					</div>
+			</div>
+			<div id="s_pas" class="station_short_info">
+				<h2>Pasieka</h2>
+				<div class="short_data cf center">
+					<div id="pa_ijp" class="ijp_data left">
+						<h3>IJP</h3>
+						<p id="pa_ijp_val"></p>
+					</div>
+					<div id="pa_pm1" class="pm1_data left">
+						<h3>PM 0.1</h3>
+						<p id="pa_pm1_val"></p>
+					</div>
+					<div id="pa_pm2" class="pm2_data left">
+						<h3>PM 2.5</h3>
+						<p id="pa_pm2_val"></p>
+					</div>
+					<div id="pa_pm10" class="pm10_data left">
+						<h3>PM 10</h3>
+						<p id="pa_pm10_val"></p>
+					</div>
+				</div>
+				<div class="more_info_arrow right">
+						<i class="fa fa-caret-right" aria-hidden="true"></i>
+					</div>
+			</div>
+			<div id="s_nwk" class="station_short_info">
+				<h2>Nowa Wieś Królewska</h2>
+				<div class="short_data cf center">
+					<div id="nw_ijp" class="ijp_data left">
+						<h3>IJP</h3>
+						<p id="nw_ijp_val"></p>
+					</div>
+					<div id="nw_pm1" class="pm1_data left">
+						<h3>PM 0.1</h3>
+						<p id="nw_pm1_val"></p>
+					</div>
+					<div id="nw_pm2" class="pm2_data left">
+						<h3>PM 2.5</h3>
+						<p id="nw_pm2_val"></p>
+					</div>
+					<div id="nw_pm10" class="pm10_data left">
+						<h3>PM 10</h3>
+						<p id="nw_pm10_val"></p>
+					</div>
+				</div>
+				<div class="more_info_arrow right">
+						<i class="fa fa-caret-right" aria-hidden="true"></i>
+					</div>
+			</div>
+			<div id="s_gru" class="station_short_info">
+				<h2>Grudzice</h2>
+				<div class="short_data cf center">
+					<div id="g_ijp" class="ijp_data left">
+						<h3>IJP</h3>
+						<p id="g_ijp_val"></p>
+					</div>
+					<div id="g_pm1" class="pm1_data left">
+						<h3>PM 0.1</h3>
+						<p id="g_pm1_val"></p>
+					</div>
+					<div id="g_pm2" class="pm2_data left">
+						<h3>PM 2.5</h3>
+						<p id="g_pm2_val"></p>
+					</div>
+					<div id="g_pm10" class="pm10_data left">
+						<h3>PM 10</h3>
+						<p id="g_pm10_val"></p>
+					</div>
+				</div>
+				<div class="more_info_arrow right">
+						<i class="fa fa-caret-right" aria-hidden="true"></i>
+					</div>
+			</div>
 		</div>
-		<script>
-		function initMap() {
-		var uluru = {lat: 50.66696111, lng: 17.92279722};
-		var map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 13,
-		center: uluru
-		});
-		var marker = new google.maps.Marker({
-		position: uluru,
-		map: map,
-
-		});
-		}
-		</script>
-		</script>
+		<div class="big_data_container">
+			<h1>Oś. Chabrów - informacje szczegółowe</h1>
+			<div class="big_pol_info cf">
+				<div id="cha_big_d_ijp" class="pol_box_pm1 left">
+					<h2>Indeks Jakości Powietrza</h2>
+					<p id="big_cha_ijp"></p>
+				</div>
+				<div id="cha_big_d_pm2" class="pol_box_pm2 left">
+					<h2>PM 2.5</h2>
+					<p id="big_cha_pm2"></p>
+				</div>
+				<div id="cha_big_d_pm10" class="pol_box_pm10 left">
+					<h2>PM 10</h2>
+					<p id="big_cha_pm10"></p>
+				</div>
+			</div>
+		</div>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyeImWmy1LmNodXs2VPwMnW0-T_W_rHLw&callback=initMap"
 		async defer></script>
 	</body>
