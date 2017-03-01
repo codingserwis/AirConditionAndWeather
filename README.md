@@ -1,6 +1,6 @@
 # Indeks Jakości Powietrza w Opolu
 ### UWAGA
-Aplikacja jest jeszcze w fazie rozwojowej i nie wszystkie funkcjonalności mogą działąć poprawnie. Również niektóre elementy na stronie mogą zmienić swoje położenie. 
+Aplikacja jest jeszcze w fazie rozwojowej i nie wszystkie funkcjonalności mogą działąć poprawnie. Również niektóre elementy na stronie mogą (i zapewne zmienią) zmienić swoje położenie. 
 
 Aplikacja zbiera dane za pomocą API udostępnionego przez LOOKO2 z 6 stacji pomiarowych znajdujących się na terenie Opola i przedstawia je w prostej formie graficznej. Zarówno IJP jak i stężenie pyłów PM 2.5 i PM 10 jest porównywane z normą i za pomocą jQuery zmienia się kolor poszczególnych danych. 
 
