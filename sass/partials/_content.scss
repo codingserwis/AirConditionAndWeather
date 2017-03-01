@@ -2,6 +2,7 @@ html {
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
 	color: $main_font_color;
+	box-sizing: border-box;
 }
 body {
 	position: relative;
@@ -12,12 +13,8 @@ body {
 			background-color: transparent;
 		}
 }
-// .slide_right {
-// 	animation-name: slide_in;
-// 	animation-iteration-count: 1;
-// 	animation-duration: 2s;
-// 	animation-fill-mode: forwards;
-// }
+
+// *** OGÓLNE ***
 .center {
 	margin: 0 auto;
 }
@@ -27,15 +24,53 @@ body {
 .right {
 	float: right;
 }
+.mrg_btn {
+	margin-bottom: 2rem;
+}
+// *** MAPA GOOGLE ***
 #map {
 	z-index: 0;
 	display: none;
 	height: 100vh;
 	width: 100vw;
 		@include from_sm_desktop {
+			z-index: 1;
 			display: block;
 			background-color: gray;
 		}
+}
+
+// *** HAMBURGER MENU ***
+.navi_hamburger {
+	display: inline-block;
+	position: absolute;
+	top: 3vh;
+	left: 3.5vh;
+	z-index: 2;
+	width: 50px;
+	height: 50px;
+	padding: 13px 10px;
+	cursor: pointer;
+	background-color: rgba($main_container_bg, 0.8);
+	@include basic-shadow;
+}
+.ham_1, .ham_2, .ham_3 {
+	margin: 5px 0;
+	width: 30px;
+	height: 2px;
+	background-color: $main_font_color;
+}
+
+// *** SIDE NAVIGATION ***
+.side_navi {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	width: 20vw;
+	height: 100vh;
+	background-color: #fff;
+	@include basic-shadow;
 }
 .more_info_arrow {
 	margin-right: 5px;
@@ -44,16 +79,15 @@ body {
 			font-size: 4rem;
 		}
 }
-.bigger {
-	transform: scale(1.2);
-	transition: 0.3s; 
+.marked_data {
+	@include custom-border(2px, red);
 }
 .small_data_container {
 	margin: 10px;
 	min-width: 90%;
 	min-height: 90%;
 	padding: 15px;
-	background-color: rgba($data_container_bg, 0.8);
+	background-color: rgba($main_container_bg, 1);
 		p {
 			margin: 5px 0;
 		}
@@ -61,42 +95,106 @@ body {
 			margin: 0;
 			position: absolute;
 			z-index: 1;
-			top: 7%;
-			left: 2%;
-			min-width: 26vw;
-			min-height: 90vh;
+			top: 1%;
+			left: 1%;
+			bottom: 1%;
+			min-width: 49.5vw;
+			height: 96vh;
+			@include basic-shadow;
 		}
+}
+.cont_header {
+	font-size: 1.2rem;
+	font-weight: 300;
+	text-align: center;
+	text-transform: uppercase;
 }
 .short_data {
 	display: inline-block;
+	margin-top: 5px;
+}
+.weather_data {
+	margin-top: 0.5rem;
+}
+.weather_info {
+	display: block;
+	width: 100%;
+	height: 170px;
+	padding: 10px;
+	background-color: $st_short_inf_bg;
+	color: $weather_info;
+	.w_condition {
+		margin: 5px 10px;
+		font-size: 2.5rem;
+	}
+	.w_temp {
+		font-size: 2.5rem;
+	}
 }
 .big_data_container {
-	//display: none;
+	display: none;
 	opacity: 1;
 	position: absolute;
 	z-index: 1;
-	top: 7%;
-	left: 30vw;
-	width: 500px;
-	min-height: 90vh;
+	top: 1%;
+	left: 400px;
+	width: 510px;
+	min-height: 0vh;
 	padding: 15px;
-	background-color: rgba($data_container_bg, 0.8);
+	background-color: rgba($main_container_bg, 0.8);
+	@include basic-shadow;
 		h1 {
 			text-transform: uppercase;
 			font-weight: 300;
 			font-size: 1.41rem;
+			text-align: center;
 		}
 }
+%big_data {
+	display: block;
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+	padding: 5px;
+	color: $white_text;
+		h3 {
+			text-align: center;
+			font-size: 1.4rem;
+			font-weight: 300;
+			margin: 5px 0;
+		}
+		p {
+
+		}
+}
+.big_ijp_data {
+	@extend %big_data;
+	background-color: blue;
+}
+.big_pm01_data {
+	@extend %big_data;
+	background-color: green;
+}
+.big_pm25_data {
+	@extend %big_data;
+	background-color: pink;
+}
+.big_pm10_data {
+	@extend %big_data;
+	background-color: black;
+}
 .station_short_info {
+	display: block;
 	margin-top: 0.505rem;
 	padding: 5px;
 	background-color: $st_short_inf_bg;
 	width: 100%;
 	min-height: 90px;
 	text-align: center;
+	transition: 0.5s;
+	@include custom-border(2px, $st_short_inf_bg);
 		h2 {
-			//text-align: center;
-			font-size: 0.9rem;
+			font-size: 1rem;
 			font-weight: 300;
 		}
 }
@@ -126,8 +224,8 @@ body {
 	@extend %pol_box;
 }
 %data {
-	width: 61px;
-	min-height: 57px;
+	width: 78px;
+	min-height: 78px;
 	margin: 5px 0 0 5px;
 	font-size: 0.9rem;
 	text-align: center;
@@ -140,6 +238,12 @@ body {
 			font-size: 1.2rem;
 			font-weight: 400;
 		}
+		.units {
+			font-size: 0.8rem;
+		}
+		.ijp {
+			font-size: 2.0rem;
+		}
 }
 .big_pol_info {
 	margin-top: 10px;
@@ -148,11 +252,12 @@ body {
 	@extend %data;
 	margin-left: 0;
 }
-.pm1_data {
+.pm01_data {
 	@extend %data;
-	background-color: rgba($pm1_bg, 1.0);
+	@include basic-border;
+	background-color: rgba($color_for_pm1, 0.5);
 }
-.pm2_data {
+.pm25_data {
 	@extend %data;
 }
 .pm10_data {
@@ -179,12 +284,6 @@ body {
 				font-weight: 300;
 			}
 		}
-}
-.cont_header {
-	font-size: 1.2rem;
-	text-align: center;
-	//font-size: 1.45rem;
-	text-transform: uppercase;
 }
 .air_data {
 	margin-top: 10px;

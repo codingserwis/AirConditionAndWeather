@@ -16,171 +16,214 @@
 	</head>
 	<body>
 		<div id="map"></div>
-		<div class="small_data_container">
+		<!-- <div id="ham_navi" class="navi_hamburger">
+							<div class="ham_1"></div>
+							<div class="ham_2"></div>
+							<div class="ham_3"></div>
+		</div>
+		<div class="side_navi">
+							<div>
+												
+							</div>
+		</div> -->
+		<div class="small_data_container cf">
 			<h1 class="cont_header">Indeks jakości powietrza w Opolu</h1>
-			<div id="s_chab" class="station_short_info cf">
-				<h2>Os. Chabrów</h2>
-				<div class="short_data cf center">
-					<div id="ch_ijp" class="ijp_data left">
-						<h3>IJP</h3>
-						<p id="ch_ijp_val"></p>
+			<div class="cf">
+				<div class="left" style="margin-right: 0.5rem;">
+					<div class="station_short_info cf">
+						<h2>Os. Chabrów</h2>
+						<div id="chab" class="short_data cf center">
+							<div class="ijp_data left">
+								<h3>IJP</h3>
+							</div>
+							<div class="pm01_data left">
+								<h3>PM 0.1</h3>
+							</div>
+							<div class="pm25_data left">
+								<h3>PM 2.5</h3>
+							</div>
+							<div class="pm10_data left">
+								<h3>PM 10</h3>
+							</div>
+						</div>
 					</div>
-					<div id="ch_pm1" class="pm1_data left">
-						<h3>PM 0.1</h3>
-						<p id="ch_pm1_val"></p>
+					<div class="station_short_info cf">
+						<h2>ul. Pułaskiego</h2>
+						<div id="pul" class="short_data cf center">
+							<div class="ijp_data left">
+								<h3>IJP</h3>
+							</div>
+							<div class="pm01_data left">
+								<h3>PM 0.1</h3>
+							</div>
+							<div class="pm25_data left">
+								<h3>PM 2.5</h3>
+							</div>
+							<div class="pm10_data left">
+								<h3>PM 10</h3>
+							</div>
+						</div>
 					</div>
-					<div id="ch_pm2" class="pm2_data left">
-						<h3>PM 2.5</h3>
-						<p id="ch_pm2_val"></p>
-					</div>
-					<div id="ch_pm10" class="pm10_data left">
-						<h3>PM 10</h3>
-						<p id="ch_pm10_val"></p>
+					<div class="station_short_info">
+						<h2>Rondo Pileckiego</h2>
+						<div id="pil" class="short_data cf center">
+							<div class="ijp_data left">
+								<h3>IJP</h3>
+							</div>
+							<div class="pm01_data left">
+								<h3>PM 0.1</h3>
+							</div>
+							<div class="pm25_data left">
+								<h3>PM 2.5</h3>
+							</div>
+							<div class="pm10_data left">
+								<h3>PM 10</h3>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="more_info_arrow right">
-					<i class="fa fa-caret-right" aria-hidden="true"></i>
+				<div class="left">
+					<div class="station_short_info">
+						<h2>Pasieka</h2>
+						<div id="pas" class="short_data cf center">
+							<div class="ijp_data left">
+								<h3>IJP</h3>
+							</div>
+							<div class="pm01_data left">
+								<h3>PM 0.1</h3>
+							</div>
+							<div class="pm25_data left">
+								<h3>PM 2.5</h3>
+							</div>
+							<div class="pm10_data left">
+								<h3>PM 10</h3>
+							</div>
+						</div>
+					</div>
+					<div class="station_short_info">
+						<h2>Nowa Wieś Królewska</h2>
+						<div id="nwk" class="short_data cf center">
+							<div class="ijp_data left">
+								<h3>IJP</h3>
+							</div>
+							<div class="pm01_data left">
+								<h3>PM 0.1</h3>
+							</div>
+							<div class="pm25_data left">
+								<h3>PM 2.5</h3>
+							</div>
+							<div class="pm10_data left">
+								<h3>PM 10</h3>
+							</div>
+						</div>
+					</div>
+					<div class="station_short_info">
+						<h2>Grudzice</h2>
+						<div id="gru" class="short_data cf center">
+							<div class="ijp_data left">
+								<h3>IJP</h3>
+							</div>
+							<div class="pm01_data left">
+								<h3>PM 0.1</h3>
+							</div>
+							<div class="pm25_data left">
+								<h3>PM 2.5</h3>
+							</div>
+							<div class="pm10_data left">
+								<h3>PM 10</h3>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div id="s_pul" class="station_short_info cf">
-				<h2>ul. Pułaskiego</h2>
-				<div class="short_data cf center">
-					<div id="p_ijp" class="ijp_data left">
-						<h3>IJP</h3>
-						<p id="p_ijp_val"></p>
-					</div>
-					<div id="p_pm1" class="pm1_data left">
-						<h3>PM 0.1</h3>
-						<p id="p_pm1_val"></p>
-					</div>
-					<div id="p_pm2" class="pm2_data left">
-						<h3>PM 2.5</h3>
-						<p id="p_pm2_val"></p>
-					</div>
-					<div id="p_pm10" class="pm10_data left">
-						<h3>PM 10</h3>
-						<p id="p_pm10_val"></p>
-					</div>
+			<div class="weather_data cf">
+				<h1 class="cont_header mrg_btn">Aktualna pogoda w Opolu</h1>
+				<div class="weather_info cf">
+					<div class="w_condition left"></div>
+					<div class="w_temp left"></div>
+					<div class="w_wind_speed"></div>
+					<div class="w_wind_dir"></div>
+					<div class="w_presure"></div>
+					<div class="w_precip_mm"></div>
+					<div class="w_humidity"></div>
+					<div class="w_feels"></div>
+					<div class="w_vis"></div>
 				</div>
-				<div class="more_info_arrow right">
-						<i class="fa fa-caret-right" aria-hidden="true"></i>
-					</div>
-			</div>
-			<div id="s_pil" class="station_short_info">
-				<h2>Rondo Pileckiego</h2>
-				<div class="short_data cf center">
-					<div id="pi_ijp" class="ijp_data left">
-						<h3>IJP</h3>
-						<p id="pi_ijp_val"></p>
-					</div>
-					<div id="pi_pm1" class="pm1_data left">
-						<h3>PM 0.1</h3>
-						<p id="pi_pm1_val"></p>
-					</div>
-					<div id="pi_pm2" class="pm2_data left">
-						<h3>PM 2.5</h3>
-						<p id="pi_pm2_val"></p>
-					</div>
-					<div id="pi_pm10" class="pm10_data left">
-						<h3>PM 10</h3>
-						<p id="pi_pm10_val"></p>
-					</div>
-				</div>
-				<div class="more_info_arrow right">
-						<i class="fa fa-caret-right" aria-hidden="true"></i>
-					</div>
-			</div>
-			<div id="s_pas" class="station_short_info">
-				<h2>Pasieka</h2>
-				<div class="short_data cf center">
-					<div id="pa_ijp" class="ijp_data left">
-						<h3>IJP</h3>
-						<p id="pa_ijp_val"></p>
-					</div>
-					<div id="pa_pm1" class="pm1_data left">
-						<h3>PM 0.1</h3>
-						<p id="pa_pm1_val"></p>
-					</div>
-					<div id="pa_pm2" class="pm2_data left">
-						<h3>PM 2.5</h3>
-						<p id="pa_pm2_val"></p>
-					</div>
-					<div id="pa_pm10" class="pm10_data left">
-						<h3>PM 10</h3>
-						<p id="pa_pm10_val"></p>
-					</div>
-				</div>
-				<div class="more_info_arrow right">
-						<i class="fa fa-caret-right" aria-hidden="true"></i>
-					</div>
-			</div>
-			<div id="s_nwk" class="station_short_info">
-				<h2>Nowa Wieś Królewska</h2>
-				<div class="short_data cf center">
-					<div id="nw_ijp" class="ijp_data left">
-						<h3>IJP</h3>
-						<p id="nw_ijp_val"></p>
-					</div>
-					<div id="nw_pm1" class="pm1_data left">
-						<h3>PM 0.1</h3>
-						<p id="nw_pm1_val"></p>
-					</div>
-					<div id="nw_pm2" class="pm2_data left">
-						<h3>PM 2.5</h3>
-						<p id="nw_pm2_val"></p>
-					</div>
-					<div id="nw_pm10" class="pm10_data left">
-						<h3>PM 10</h3>
-						<p id="nw_pm10_val"></p>
-					</div>
-				</div>
-				<div class="more_info_arrow right">
-						<i class="fa fa-caret-right" aria-hidden="true"></i>
-					</div>
-			</div>
-			<div id="s_gru" class="station_short_info">
-				<h2>Grudzice</h2>
-				<div class="short_data cf center">
-					<div id="g_ijp" class="ijp_data left">
-						<h3>IJP</h3>
-						<p id="g_ijp_val"></p>
-					</div>
-					<div id="g_pm1" class="pm1_data left">
-						<h3>PM 0.1</h3>
-						<p id="g_pm1_val"></p>
-					</div>
-					<div id="g_pm2" class="pm2_data left">
-						<h3>PM 2.5</h3>
-						<p id="g_pm2_val"></p>
-					</div>
-					<div id="g_pm10" class="pm10_data left">
-						<h3>PM 10</h3>
-						<p id="g_pm10_val"></p>
-					</div>
-				</div>
-				<div class="more_info_arrow right">
-						<i class="fa fa-caret-right" aria-hidden="true"></i>
-					</div>
 			</div>
 		</div>
 		<div class="big_data_container">
-			<h1>Oś. Chabrów - informacje szczegółowe</h1>
-			<div class="big_pol_info cf">
-				<div id="cha_big_d_ijp" class="pol_box_pm1 left">
-					<h2>Indeks Jakości Powietrza</h2>
-					<p id="big_cha_ijp"></p>
-				</div>
-				<div id="cha_big_d_pm2" class="pol_box_pm2 left">
-					<h2>PM 2.5</h2>
-					<p id="big_cha_pm2"></p>
-				</div>
-				<div id="cha_big_d_pm10" class="pol_box_pm10 left">
-					<h2>PM 10</h2>
-					<p id="big_cha_pm10"></p>
-				</div>
+			<h1>Dane szczegółowe Os. Chabrów</h2>
+			<div><p>
+				<i class="wi wi-night-sleet"></i>
+			</p>
+		</div>
+		<div class="cf">
+			<div class="big_ijp_data left">
+				<h3>IJP</h3>
+				<p>10</p>
+				<p>mg/m<sup>3</sup></p>
+			</div>
+			<div class="big_pm10_data left">
+				<h3>PM 10</h3>
+				<p>100</p>
+				<p>mg/m<sup>3</sup></p>
+			</div>
+			<div class="big_pm25_data left">
+				<h3>PM 2.5</h3>
+				<p>1</p>
+				<p>mg/m<sup>3</sup></p>
+			</div>
+			<div class="big_pm01_data left	">
+				<h3>PM 0.1</h3>
+				<p>12</p>
+				<p>mg/m<sup>3</sup></p>
 			</div>
 		</div>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyeImWmy1LmNodXs2VPwMnW0-T_W_rHLw&callback=initMap"
-		async defer></script>
-	</body>
+		<div>
+			<h3>Legenda</h3>
+			<table>
+				<thead>
+					<th>Indeks Jakości Powietrza</th>
+					<th>PM10</th>
+					<th>PM2.5</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td>0 - 1</td>
+						<td>0 - 20</td>
+						<td>0 - 12</td>
+					</tr>
+					<tr>
+						<td>1-3</td>
+						<td>20 - 60</td>
+						<td>12 - 36</td>
+					</tr>
+					<tr>
+						<td>3-5</td>
+						<td>60 - 100</td>
+						<td>36 - 60</td>
+					</tr>
+					<tr>
+						<td>5-7</td>
+						<td>100 - 140</td>
+						<td>60 - 84</td>
+					</tr>
+					<tr>
+						<td>7-10</td>
+						<td>140 - 200</td>
+						<td>84 - 120</td>
+					</tr>
+					<tr>
+						<td>>10</td>
+						<td>>200</td>
+						<td>>120</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="slide_up">do góry</div>
+	</div>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyeImWmy1LmNodXs2VPwMnW0-T_W_rHLw&callback=initMap"
+	async defer></script>
+</body>
 </html>
