@@ -11,7 +11,6 @@ var lookoApiKey = '1487184056',
 	apixuKey = '48147044f89b4001831152133171402'
 	apixuUrl = 'http://api.apixu.com/v1/current.json?key=48147044f89b4001831152133171402&q=Opole';
 
-
 // *** Połączenie z Api OSA Chabry ***	
 	function connectionToApiChabry(){
 		$.ajax({
@@ -110,24 +109,20 @@ var lookoApiKey = '1487184056',
 				return '<i class="wi wi-day-sunny"></i>';
 			} else if(response.current.condition.code === 1003){
 				return '<i class="wi wi-day-cloudy"></i>';
+			} else if(response.current.condition.code === 1006){
+				return '<i class="wi wi-day-cloudy"></i>';
 			}
 		} else if(response.current.is_day === 0){
 			if(response.current.condition.code === 1000){
 				return '<i class="wi wi-night-clear"></i>';
 			} else if(response.current.condition.code === 1003){
 				return '<i class="wi wi-night-alt-cloudy"></i>';
+			} else if(response.current.condition.code === 1006){
+				return '<i class="wi wi-night-alt-cloudy></i>';
 			}
 		}	
 	}
 
-// *** Sprawdzanie kierunku wiatru ***
-	function checkWindDir(response){
-		if(response.current.wind_dir == 'SSW'){
-			return '<i class="wi wi-wind wi-from-ssw"></i>';
-		} else if(response.current.wind_dir == 'SW'){
-			return '<i class="wi wi-wind wi-from-sw"></i>';
-		}
-	}
 // *** Dane pogodowe ***
 	function insertWeatherData(response){
 		var wCondition = $('.w_condition'),
@@ -141,14 +136,14 @@ var lookoApiKey = '1487184056',
 			wVis = $('.w_vis');
 
 			wCondition.html(checkWeatherCondition(response));
-			wWindDir.html(checkWindDir(response));
 			wTemp.html(`<p>${response.current.temp_c}&ordmC</p>`);
+			wWindDir.html(`<i class="wi wi-wind wi-from-${response.current.wind_dir}"></i>`);
 			wWindSpeed.html(`<span>${response.current.wind_kph} km/h</span>`);
-			wPresure.html(`<span>${response.current.pressure_mb} mb</span>`);
-			wPrecipMm.html(`<span>${response.current.precip_mm} mm</span>`);
-			wHumidity.html(`<span>${response.current.humidity} %</span>`);
-			wFeels.html(`<span>${response.current.feelslike_c}&ordmC</span>`);
-			wVis.html(`<span>${response.current.vis_km} km</span>`);
+			wPresure.html(`<span>Ciśniene: ${response.current.pressure_mb} mb</span>`);
+			wPrecipMm.html(`<span>Ilosc opadów: ${response.current.precip_mm} mm</span>`);
+			wHumidity.html(`<span>Wilgotność: ${response.current.humidity} %</span>`);
+			wFeels.html(`<span>Temp. odczuwalna: ${response.current.feelslike_c} &ordmC</span>`);
+			wVis.html(`<span>Widoczność: ${response.current.vis_km} km</span>`);
 	}
 // *** Sprawdzanie poziomu IJP
 	function checkValueOfIjp(paramName, elemId){
@@ -264,7 +259,7 @@ function initMap() {
     		strokeColor: '#FF0000',
             strokeOpacity: 0.8,
             strokeWeight: 1,
-            fillColor: chabryStr.color,//'red',
+            fillColor: 'red',
             fillOpacity: 0.35,
             map: map,
             center: chabryStr.center,
