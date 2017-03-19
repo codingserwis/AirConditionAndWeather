@@ -8,7 +8,7 @@ var lookoApiKey = '1487184056',
 	pasId = '5ccf7fc17d7d',
 	nwkId = '5ccf7fc18052',
 	gruId = '60019400a82b',
-	apixuKey = '48147044f89b4001831152133171402'
+	apixuKey = '48147044f89b4001831152133171402',
 	apixuUrl = 'http://api.apixu.com/v1/current.json?key=48147044f89b4001831152133171402&q=Opole';
 
 // *** Połączenie z Api OSA Chabry ***	
@@ -112,20 +112,23 @@ var lookoApiKey = '1487184056',
 			} else if(response.current.condition.code === 1006){
 				return '<i class="wi wi-day-cloudy"></i>';
 			}
-		} else if(response.current.is_day === 0){
+		} else {
 			if(response.current.condition.code === 1000){
 				return '<i class="wi wi-night-clear"></i>';
 			} else if(response.current.condition.code === 1003){
 				return '<i class="wi wi-night-alt-cloudy"></i>';
 			} else if(response.current.condition.code === 1006){
-				return '<i class="wi wi-night-alt-cloudy></i>';
+				return '<i class="wi wi-night-alt-cloudy"></i>';
+			} else if (response.current.condition.code === 1183){
+				return '<i class="wi wi-night-alt-hail"></i>';
 			}
 		}	
 	}
 
 // *** Dane pogodowe ***
 	function insertWeatherData(response){
-		var wCondition = $('.w_condition'),
+		var windDir = response.current.wind_dir.toLowerCase(),
+			wCondition = $('.w_condition'),
 			wTemp = $('.w_temp'),
 			wWindSpeed = $('.w_wind_speed'),
 			wWindDir = $('.w_wind_dir'),
@@ -137,7 +140,7 @@ var lookoApiKey = '1487184056',
 
 			wCondition.html(checkWeatherCondition(response));
 			wTemp.html(`<p>${response.current.temp_c}&ordmC</p>`);
-			wWindDir.html(`<i class="wi wi-wind wi-from-${response.current.wind_dir}"></i>`);
+			wWindDir.html(`<i class="wi wi-wind wi-from-${windDir}"></i>`);
 			wWindSpeed.html(`<span>${response.current.wind_kph} km/h</span>`);
 			wPresure.html(`<span>Ciśniene: ${response.current.pressure_mb} mb</span>`);
 			wPrecipMm.html(`<span>Ilosc opadów: ${response.current.precip_mm} mm</span>`);
@@ -231,20 +234,19 @@ $(document).ready(function(){
 	connectionToApixu()
 	//hideBigData();
 });
+
 // *** Mapa Google ***
 var chabryStr = {
 		center: {
 			lat: 50.6791, 
 			lng: 17.9265
-		},
-		color: 'blue'
+		}
 	},
 	pulawskiegoStr = {center: {lat: 50.6733, lng: 17.925}},
 	pasiekaStr = {center: {lat: 50.6619, lng: 17.9201}},
 	nowaWkStr = {center: {lat: 50.6533, lng: 17.9521}},
 	grudziceStr = {center: {lat: 50.6515, lng: 17.9857}},
 	strzeleckaStr = {center: {lat: 50.6711, lng: 17.9260}}; 
-
 // *** Inicjalizacja Mapy Google ***
 function initMap() {
     var uluru = {lat: 50.6705469, lng: 17.8830356};
@@ -255,6 +257,9 @@ function initMap() {
     });
 
 // *** Punktuy pomiarowe na mapie ***
+		
+
+
     	var chabryCircle = new google.maps.Circle({
     		strokeColor: '#FF0000',
             strokeOpacity: 0.8,
@@ -264,7 +269,7 @@ function initMap() {
             map: map,
             center: chabryStr.center,
             radius: 400
-       });
+      	});
         var pulaskiegoCircle = new google.maps.Circle({
     		strokeColor: '#FF0000',
             strokeOpacity: 0.8,
@@ -328,7 +333,7 @@ function initMap() {
           dataToMark.css('border', '2px solid transparent');
         });
     }
-    markedCircle(chabryCircle, '#chab');
+   	markedCircle(chabryCircle, '#chab');
     markedCircle(pulaskiegoCircle, '#pul');
     markedCircle(pasiekaCircle, '#pas');
     markedCircle(nwkCircle, '#nwk');
