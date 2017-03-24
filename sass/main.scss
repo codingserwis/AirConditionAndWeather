@@ -1,10 +1,8 @@
 // *** RESET
 @import 'partials/_reset';
 // *** ZMIENNE
-@import 'modules/_var';
-// *** ANIMATIONS
-@import 'modules/_animations';
-// *** MIXINS
-@import 'modules/_mixins';
+@import 'modules/_global-vars';
 // *** CONTENT
+@import 'partials/_floats';
+@import 'partials/_basic';
 @import 'partials/_content';

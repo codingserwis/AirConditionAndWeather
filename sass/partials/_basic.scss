@@ -1,0 +1,22 @@
+// +++ CONFIG +++
+// +++ +++ FONTS +++ +++
+$basic-font: $blobal-font-family;
+$basic-size: $global-font-size;
+$basic-weight: $global-font-weight;
+$basic-font-color: $global-font-color;
+
+// +++ +++ COLORS +++ +++
+$basic-bg-color: map-get($global-colors, bg-color);
+
+html {
+	font-family: $basic-font, sans-serif;
+	font-size: $basic-size;
+	color: $basic-font-color;
+	box-sizing: border-box;
+}
+body {
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	background-color: $basic-bg-color;
+}
