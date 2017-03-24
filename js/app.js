@@ -128,13 +128,13 @@ var lookoApiKey = '1487184056',
 // *** Dane pogodowe ***
 	function insertWeatherData(response){
 		var windDir = response.current.wind_dir.toLowerCase(),
-			wCondition = $('.w_condition'),
-			wTemp = $('.w_temp'),
+			wCondition = $('.act_condition'),
+			wTemp = $('.act_temp'),
 			wWindSpeed = $('.w_wind_speed'),
 			wWindDir = $('.w_wind_dir'),
 			wPresure = $('.w_presure'),
 			wPrecipMm = $('.w_precip_mm'),
-			wHumidity = $('.w_humidity')
+			wHumidity = $('.w_humidity'),
 			wFeels = $('.w_feels'),
 			wVis = $('.w_vis');
 
