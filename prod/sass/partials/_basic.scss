@@ -1,0 +1,34 @@
+// +++ +++ config +++ +++
+// +++ typography +++
+$basic-font-family: $global-main-font-family;
+$basic-font-size: $global-font-size;
+$basic-text-color: map-get($font-colors, black);
+$basic-font-weight: $global-main-font-weight;
+
+// +++ colors +++
+$gray: map-get($global-colors, gray);
+
+
+html {
+	font-family: $basic-font-family;
+	font-size: $basic-font-size;
+	color: $basic-text-color;
+	font-weight: $basic-font-weight;
+}
+body {
+	max-width: 100%;
+	background-color: $gray;
+	padding: .250rem;
+}
+.flex {
+	display: flex;
+}
+.flex__row {
+	flex-direction: row;
+}
+.flex__col-mob {
+	flex-direction: column;
+}
+.flex__justify-between {
+	justify-content: space-between;
+}

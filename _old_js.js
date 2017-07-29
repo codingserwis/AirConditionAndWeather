@@ -8,15 +8,13 @@
 // *** KEY TO APIXU WEATHER - 48147044f89b4001831152133171402 ***
 // *** BASIC URL TO API - http://api.looko2.com/?method=GetLOOKO&id=${stationID}&token=${apiKey}
 var lookoApiKey = '1487184056',
-<<<<<<< HEAD
-=======
+
 	chabryId = '5ccf7fc18200',
 	pulaId = '5ccf7fc255ee',
 	pilId = '6001940094f8',
 	pasId = '5ccf7fc17d7d',
 	nwkId = '5ccf7fc18052',
 	gruId = '60019400a82b',
->>>>>>> eccf6bab2d393c94dce415bf183809353145ce3c
 	apixuKey = '48147044f89b4001831152133171402',
 	apixuUrl = 'http://api.apixu.com/v1/current.json?key=48147044f89b4001831152133171402&q=Opole';
 
@@ -273,8 +271,7 @@ function initMap() {
             center: strzeleckaStr.center,
             radius: 400
         });
-<<<<<<< HEAD
-=======
+
 
     function markedCircle(circle, elemToMark ){
     	var dataToMark = $(`${elemToMark}`).parent();
@@ -294,5 +291,4 @@ function initMap() {
     markedCircle(nwkCircle, '#nwk');
     markedCircle(grudziceCircle, '#gru');
     markedCircle(strzeleckaCircle, '#pil');
->>>>>>> eccf6bab2d393c94dce415bf183809353145ce3c
 }

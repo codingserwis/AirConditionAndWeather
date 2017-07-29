@@ -1,0 +1,57 @@
+// +++ +++ config +++ +++
+$white-bcg: map-get($global-colors, white);
+$light-gray-bcg: map-get($global-colors, light-gray);
+$text-white: map-get($font-colors, white);
+
+// +++ +++ extends +++ +++
+%station-data {
+	width: 33%;
+	min-height: 90px;
+	padding: .250rem;
+	text-align: center;
+	background-color: green;
+	color: $text-white;
+}
+.data__container {
+	width: 100%;
+	padding: .750rem;
+	background-color: $white-bcg;
+}
+.data__container-header {
+	text-transform: uppercase;
+	text-align: center;
+}
+.station__container {
+	width: 100%;
+	margin-top: .500rem;
+	padding: .250rem;
+	background-color: $light-gray-bcg;
+}
+.station__container-header {
+	text-align: center;
+	margin-bottom: .250rem;
+}
+.station__data-ijp {
+	@extend %station-data;
+}
+.data__ijp {
+	margin: .500rem 0;
+	font-size: 2rem;
+}
+.station__data-pm1 {
+	@extend %station-data;
+}
+.data__pm1 {
+	margin: .500rem 0;
+	font-size: 2rem;
+}
+.station__data-pm2 {
+	@extend %station-data;
+}
+.data__pm2 {
+	margin: .500rem;
+	font-size: 2rem;
+}
+.units {
+	font-size: .750rem;
+}

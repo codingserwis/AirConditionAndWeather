@@ -5,20 +5,50 @@
 		<meta name="description" content="Indeks jakoście powietrza w Opolu. Dane pomiarowe z LOOKO2.">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="keywords" content="Indeks Jakości Powietrza, Opole, SMOG, LOOKO2">
-		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet">
-		<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-		<script type="text/javascript" src="js/app.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/main.css">
-		<link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css">
-		<link rel="stylesheet" type="text/css" href="css/weather-icons.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+		<!-- <script src="https://code.jquery.com/jquery-3.1.1.js"></script> -->
+		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+		<!-- <link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css"> -->
+		<!-- <link rel="stylesheet" type="text/css" href="css/weather-icons.min.css"> -->
 		<title>IJP w Opolu</title>
 	</head>
 	<body>
-		<div id="map"></div>
+		<div class="data__container flex flex__col-mob">
+			<h1 class="data__container-header">Indeks jakości powietrza w opolu</h1>
+			<div class="data__container-data">
+				<div class="station__container">
+					<h2 class="station__container-header">
+						Os. Chabrów
+					</h2>
+					<div class="station__container-data flex flex__row flex__justify-between">
+						<div class="station__data-ijp">
+							<h3>
+								IJP
+							</h3>
+							<p class="data__ijp">1</p>
+						</div>
+						<div class="station__data-pm2">
+							<h3>
+								PM 2.5
+							</h3>
+							<p class="data__pm2">10</p>
+							<p class="units">&microg/m<sup>3</sup></p>
+						</div>
+						<div class="station__data-pm1">
+							<h3>
+								PM 10
+							</h3>
+							<p class="data__pm1">111</p>
+							<p class="units">&microg/m<sup>3</sup></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div id="map"></div>
 		<div class="small_data_container cf">
 			<h1 class="cont_header">Indeks jakości powietrza w Opolu</h1>
 			<div class="cf">
-<<<<<<< HEAD
 				<div class="mrg_right left">
 					<div class="station_short_info cf">
 						<h2>Os. Chabrów</h2>
@@ -60,8 +90,6 @@
 							<div class="pm10_data left">
 								<h3>PM 10</h3>
 							</div>
-=======
-			
 				<div class="station_short_info cf">
 					<h2>Os. Chabrów</h2>
 					<div id="chab" class="short_data cf center">
@@ -101,7 +129,6 @@
 						</div>
 						<div class="pm10_data left">
 							<h3>PM 10</h3>
->>>>>>> eccf6bab2d393c94dce415bf183809353145ce3c
 						</div>
 					</div>
 				</div>
@@ -172,8 +199,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyeImWmy1LmNodXs2VPwMnW0-T_W_rHLw&callback=initMap"
-		async defer></script>
+		</div> -->
+		<script type="text/javascript" src="assets/js/app.js"></script>
+		<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyeImWmy1LmNodXs2VPwMnW0-T_W_rHLw&callback=initMap"
+		async defer></script> -->
 	</body>
 </html>
