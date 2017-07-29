@@ -1,110 +1,31 @@
-html {
-	font-family: 'Roboto', sans-serif;
-	font-size: 16px;
-	color: $main_font_color;
-	box-sizing: border-box;
-}
-body {
-	position: relative;
-	width: 100vw;
-	height: 100vh;
-	background-color: lightgray;
-		@include from_sm_desktop {
-			background-color: transparent;
-		}
-}
+// +++ CONFIG +++
+// +++ +++ FONTS +++ +++
+$bold-text: $global-font-bold;
 
-// *** OGÓLNE ***
-.center {
-	margin: 0 auto;
-}
-.left {
-	float: left;
-}
-.right {
-	float: right;
-}
-.mrg_btn {
-	margin-bottom: 2rem;
-}
-.mrg_right {
-	margin-right: 0.5rem;
-}
-// *** MAPA GOOGLE ***
+// +++ +++ COLORS +++ +++
+$google-map-bg-color: map-get($global-colors, g-map-bg);
+$small-container-bg: map-get($global-colors, global-white);
+$station-short-info-bg: map-get($global-colors, station-gray-bg);
+$white-font: map-get($global-colors, global-white);
+$orange-font: map-get($global-colors, global-orange);
+
+// +++ GOOGLE MAP +++
 #map {
-	z-index: 0;
 	display: none;
-	height: 100vh;
-	width: 100vw;
-		@include from_sm_desktop {
-			z-index: 1;
-			display: block;
-			background-color: gray;
-		}
+		// @include from_sm_desktop {
+		// 	display: block;
+		// 	height: 100vh;
+		// 	width: 100vw;
+		// 	z-index: 1;
+		// 	background-color: $google-map-bg-color;
+		// }
 }
-
-// *** HAMBURGER MENU ***
-.navi_hamburger {
-	display: inline-block;
-	position: absolute;
-	top: 3vh;
-	left: 3.5vh;
-	z-index: 2;
-	width: 50px;
-	height: 50px;
-	padding: 13px 10px;
-	cursor: pointer;
-	background-color: rgba($main_container_bg, 0.8);
-	@include basic-shadow;
-}
-.ham_1, .ham_2, .ham_3 {
-	margin: 5px 0;
-	width: 30px;
-	height: 2px;
-	background-color: $main_font_color;
-}
-
-// *** SIDE NAVIGATION ***
-.side_navi {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 3;
-	width: 20vw;
-	height: 100vh;
-	background-color: #fff;
-	@include basic-shadow;
-}
-.more_info_arrow {
-	margin-right: 5px;
-	cursor: pointer;
-		i {
-			font-size: 4rem;
-		}
-}
-.marked_data {
-	@include custom-border(2px, red);
-}
+// +++ SMALL IJP DATA CONTAINER +++
 .small_data_container {
-	margin: 10px;
-	min-width: 90%;
-	min-height: 90%;
-	padding: 15px;
-	background-color: rgba($main_container_bg, 1);
-		p {
-			margin: 5px 0;
-		}
-		@include from_sm_desktop {
-			margin: 0;
-			position: absolute;
-			z-index: 1;
-			top: 1%;
-			left: 1%;
-			bottom: 1%;
-			min-width: 49.5vw;
-			height: 96vh;
-			@include basic-shadow;
-		}
+	margin: 0.25rem;
+	min-width: 97%;
+	padding: 0.75rem;
+	background-color: rgba($small-container-bg, 1);
 }
 .cont_header {
 	font-size: 1.2rem;
@@ -112,231 +33,99 @@ body {
 	text-align: center;
 	text-transform: uppercase;
 }
-.short_data {
-	display: inline-block;
-	margin-top: 5px;
-}
-.weather_data {
-	margin-top: 0.5rem;
-}
-.weather_info {
-	display: block;
-	width: 100%;
-	height: 190px;
-	margin-top: 0.5rem;
-	padding: 10px;
-	background-color: $st_short_inf_bg;
-	color: $weather_info;
-	h3 {
-		font-weight: 300;
-		text-align: center;
-	}
-	.w_condition {
-		margin: 5px 10px;
-		font-size: 2.5rem;
-	}
-	.w_temp {
-		font-size: 2.5rem;
-	}
-}
-.wind_info {
-	font-weight: 300;
-}
-.wind_block {
-	.w_wind_dir {
-		margin: 5px 10px;
-		font-size: 3rem;
-	}
-	.w_wind_speed {
-		padding: 21px 0;
-		font-size: 1.5rem;
-	}
-}
-.currner_weather {
-	width: 60%;
-	padding: 5px;
-}
-.forecast_weather {
-	width: 40%;
-	padding: 5px;
-}
-.weather_other_info {
-	display: block;
-	width: 13rem;
-	height: 100%;
-	margin-left: 1rem;
-	padding: 5px;
-		div {
-			margin: 0.4rem 0;
-			span {
-				font-weight: 300;
-			}
-		}
-}
-.big_data_container {
-	display: none;
-	opacity: 1;
-	position: absolute;
-	z-index: 1;
-	top: 1%;
-	left: 400px;
-	width: 510px;
-	min-height: 0vh;
-	padding: 15px;
-	background-color: rgba($main_container_bg, 0.8);
-	@include basic-shadow;
-		h1 {
-			text-transform: uppercase;
-			font-weight: 300;
-			font-size: 1.41rem;
-			text-align: center;
-		}
-}
-%big_data {
-	display: block;
-	width: 100px;
-	height: 100px;
-	margin: 10px;
-	padding: 5px;
-	color: $white_text;
-		h3 {
-			text-align: center;
-			font-size: 1.4rem;
-			font-weight: 300;
-			margin: 5px 0;
-		}
-		p {
-
-		}
-}
-.big_ijp_data {
-	@extend %big_data;
-	background-color: blue;
-}
-.big_pm01_data {
-	@extend %big_data;
-	background-color: green;
-}
-.big_pm25_data {
-	@extend %big_data;
-	background-color: pink;
-}
-.big_pm10_data {
-	@extend %big_data;
-	background-color: black;
-}
 .station_short_info {
-	display: block;
-	margin-top: 0.505rem;
-	padding: 5px;
-	background-color: $st_short_inf_bg;
 	width: 100%;
-	min-height: 90px;
-	text-align: center;
-	transition: 0.5s;
-	@include custom-border(2px, $st_short_inf_bg);
-		h2 {
-			font-size: 1rem;
-			font-weight: 300;
-		}
-}
-%pol_box {
-	min-width: 150px;
-	min-height: 150px;
-	color: $white_text;
+	display: block;
+	margin-top: 0.5rem;
+	padding: 0.3rem;
+	background-color: rgba($station-short-info-bg, 1);
 	text-align: center;
 		h2 {
-			margin-top: 10px;
-			font-size: 1rem;
-			font-weight: 300;
-		}
-		p {
-			font-size: 5rem;
 			font-weight: 300;
 		}
 }
-.pol_box_pm1 {
-	@extend %pol_box;
+.short_data {
+	width: 100%;
+	display: inline-block;
+	margin-top: 0.25rem;
 }
-.pol_box_pm2 {
-	@extend %pol_box;
-	margin: 0 10px;
-}
-.pol_box_pm10 {
-	@extend %pol_box;
-}
+// +++ DATA CONTAINERS +++
 %data {
-	width: 78px;
-	min-height: 78px;
-	margin: 5px 0 0 5px;
-	font-size: 0.9rem;
+	width: 32.37%;
+	min-height: 90px;
+	margin-top: 0.25rem;
 	text-align: center;
-	color: white;	
+	color: $white-font;	
 		h3 {
-			padding-top: 3px;
+			padding-top: 0.25rem;
 			font-weight: 300;
 		}
 		p {
-			font-size: 1.2rem;
-			font-weight: 400;
+			font-size: 2rem;
+			font-weight: $bold-text;
 		}
 		.units {
 			font-size: 0.8rem;
+			font-weight: $global-font-weight;
 		}
-		.ijp {
-			font-size: 2.0rem;
-		}
-}
-.big_pol_info {
-	margin-top: 10px;
 }
 .ijp_data {
 	@extend %data;
-	margin-left: 0;
-}
-.pm01_data {
-	@extend %data;
-	@include basic-border;
-	background-color: rgba($color_for_pm1, 0.5);
 }
 .pm25_data {
 	@extend %data;
+	margin-left: 0.25rem;
+	margin-right: 0.25rem;
 }
 .pm10_data {
 	@extend %data;
 }
-.polution_data {
-	display: inline-block;
-	position: relative;
-	min-width: 150px;
-	min-height: 150px;
-	left: calc(50% - 75px);
-	margin-top: 15px;
-	color: white;
-	padding: 10px;
-	text-align: center;
-		p {
-			span {
-				font-size: 4.5rem;
-			}
+
+// +++ WEATHER CONTAINER +++
+.weather_data {
+	margin-top: 1rem;
+}
+.weather_info {
+	display: block;
+	width: 100%;
+	margin-top: 0.5rem;
+	padding: 0.3rem;
+	background-color: $station-short-info-bg;
+	color: $orange-font;
+}
+.currner_weather {
+	width: 100%;
+	padding: 0.25px;
+		h3 {
+			margin-top: 0.5rem;
+			font-weight: 300;
+			text-align: center;
 		}
-		.pol_index {
+}
+.actual_info, .wind_block {
+	div {
+		font-size: 3.5rem;
+		padding: 1rem 0.5rem;
+	}
+	.act_condition, .w_wind_dir {
+		width: 50%;
+		text-align: center;
+	}
+	.act_temp {
+		width: 50%;
+	}
+	.w_wind_speed {
+		width: 50%;
+		font-size: 1.9rem;
+		padding: 2.250rem 0 0 0;
+	}
+}
+.weather_other_info {
+		div {
+			margin: 0.5rem 0;
 			span {
-				font-size: 1.2rem;
+				font-size: 1.4rem;
 				font-weight: 300;
 			}
 		}
-}
-.air_data {
-	margin-top: 10px;
-		p {
-			font-weight: 300;
-		}
-		span {
-			font-weight: 400;
-		}
-}
-.owner {
-	text-align: center;
-	font-size: 0.7rem;
 }
