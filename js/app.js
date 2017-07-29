@@ -1,94 +1,56 @@
 // *** KEY TO LOOKO2 API - 1487184056 ***
+// *** ChabryId = '5ccf7fc18200',
+// *** Puławskiego = '5ccf7fc255ee',
+// *** Pileckiego = '6001940094f8',
+// *** Pasieka = '5ccf7fc17d7d',
+// *** Nowa Wieś Królewska = '5ccf7fc18052',
+// *** Grudzice = '60019400a82b',
 // *** KEY TO APIXU WEATHER - 48147044f89b4001831152133171402 ***
 // *** BASIC URL TO API - http://api.looko2.com/?method=GetLOOKO&id=${stationID}&token=${apiKey}
 var lookoApiKey = '1487184056',
-	chabryId = '5ccf7fc18200',
-	pulaId = '5ccf7fc255ee',
-	pilId = '6001940094f8',
-	pasId = '5ccf7fc17d7d',
-	nwkId = '5ccf7fc18052',
-	gruId = '60019400a82b',
-	apixuKey = '48147044f89b4001831152133171402'
+	apixuKey = '48147044f89b4001831152133171402',
 	apixuUrl = 'http://api.apixu.com/v1/current.json?key=48147044f89b4001831152133171402&q=Opole';
 
-// *** Połączenie z Api OSA Chabry ***	
-	function connectionToApiChabry(){
+var points = [
+	{
+		id: '#chab',
+		kei: '5ccf7fc18200'
+	},
+	{
+		id: '#pul',
+		kei: '5ccf7fc255ee'
+	},
+	{
+		id: '#pil',
+		kei: '6001940094f8'
+	},
+	{
+		id: '#pas',
+		kei: '5ccf7fc17d7d',
+	},
+	{
+		id: '#nwk',
+		kei: '5ccf7fc18052'
+	},
+	{
+		id: '#gru',
+		kei: '60019400a82b'
+	}
+];
+
+function connectToApi(){
+	points.forEach(function(index, value){
 		$.ajax({
-			url: `http://api.looko2.com/?method=GetLOOKO&id=${chabryId}&token=${lookoApiKey}`,
+			url: `http://api.looko2.com/?method=GetLOOKO&id=${index.kei}&token=${lookoApiKey}`,
 			dataType: 'json',
 			type: 'GET'
 		}).done(function(response){
-			insertData(response, '#chab');
+			insertData(response, index.id);
 		}).fail(function(error){
 			console.log(error);
-		})
-	}
-
-// *** Połączenie z Api OSA Pulaskego ***
-	function connectionToApiPulaskiego(){
-		$.ajax({
-			url: `http://api.looko2.com/?method=GetLOOKO&id=${pulaId}&token=${lookoApiKey}`,
-			dataType: 'json',
-			type: 'GET'
-		}).done(function(response){
-			insertData(response, '#pul');
-		}).fail(function(error){
-			console.log(error);
-		})
-	}
-
-// *** Połączenie z Api OSA Rondo Pileckiego ***
-	function connectionToApiPileckego(){
-		$.ajax({
-			url: `http://api.looko2.com/?method=GetLOOKO&id=${pilId}&token=${lookoApiKey}`,
-			dataType: 'json',
-			type: 'GET'
-		}).done(function(response){
-			insertData(response, '#pil');
-		}).fail(function(error){
-			console.log(error);
-		})
-	}
-
-// *** Połączenie z Api OSA Pasieka ***
-	function connectionToApiPasieka(){
-		$.ajax({
-			url: `http://api.looko2.com/?method=GetLOOKO&id=${pasId}&token=${lookoApiKey}`,
-			dataType: 'json',
-			type: 'GET'
-		}).done(function(response){
-			insertData(response, '#pas');
-		}).fail(function(error){
-			console.log(error);
-		})
-	}
-
-// *** Połączenie z Api OSA Nowa Wieś Królewska ***
-	function connectionToApiNwk(){
-		$.ajax({
-			url: `http://api.looko2.com/?method=GetLOOKO&id=${nwkId}&token=${lookoApiKey}`,
-			dataType: 'json',
-			type: 'GET'
-		}).done(function(response){
-			insertData(response, '#nwk');
-		}).fail(function(error){
-			console.log(error);
-		})
-	}
-
-// *** Połączenie z Api OSA Grudzice ***
-	function connectionToApiGrudzice(){
-		$.ajax({
-			url: `http://api.looko2.com/?method=GetLOOKO&id=${gruId}&token=${lookoApiKey}`,
-			dataType: 'json',
-			type: 'GET'
-		}).done(function(response){
-			insertData(response, '#gru');
-		}).fail(function(error){
-			console.log(error);
-		})
-	}
-
+		});
+	});
+}
 // *** Połączenie do APIXU API ***
 	function connectionToApixu(){
 		$.ajax({
@@ -96,7 +58,6 @@ var lookoApiKey = '1487184056',
 			dataType: 'json',
 			type: 'GET'
 		}).done(function(response){
-			console.log(response);
 			insertWeatherData(response);
 		}).fail(function(error){
 			console.log(error);
@@ -195,12 +156,10 @@ var lookoApiKey = '1487184056',
 // *** Wstawianie danych ***
 	function insertData(response, stId){
 		var stationIjp = $(`${stId}`).find('.ijp_data'),
-			stationPm01 = $(`${stId}`).find('.pm01_data'),
 			stationPm25 = $(`${stId}`).find('.pm25_data'),
 			stationPm10 = $(`${stId}`).find('.pm10_data');
 
 			stationIjp.html(`<h3>IJP</h3><p class="ijp">${response.IJP}</p>`);
-			stationPm01.html(`<h3>PM 0.1</h3><p>${response.PM1}</p><p class="units">&microg/m<sup>3</sup></p>`);
 			stationPm25.html(`<h3>PM 2.5</h3><p>${response.PM25}</p><p class="units">&microg/m<sup>3</sup></p>`);
 			stationPm10.html(`<h3>PM 10</h3><p>${response.PM10}</p><p class="units">&microg/m<sup>3</sup></p>`);
 
@@ -210,26 +169,11 @@ var lookoApiKey = '1487184056',
 
 	}
 // *** Akcje na doomie ***
-// *** Zwijanie dóżego info ***
-	function hideBigData(){
-		var hideBtn = $('.slide_up'),
-			bigContainer = $('.big_data_container');
-
-			hideBtn.on('click', function(){
-				bigContainer.animate({height: 0, opacity: 0}, 1000);
-			});
-	}
 // *** Document listner ***
 $(document).ready(function(){
 	// *** Wywołanie funkcji ***
-	connectionToApiChabry();
-	connectionToApiPulaskiego();
-	connectionToApiPileckego();
-	connectionToApiPasieka();
-	connectionToApiNwk();
-	connectionToApiGrudzice();
-	connectionToApixu()
-	//hideBigData();
+	connectToApi();
+	connectionToApixu();
 });
 // *** Mapa Google ***
 var chabryStr = {
@@ -315,23 +259,4 @@ function initMap() {
             center: strzeleckaStr.center,
             radius: 400
         });
-
-    function markedCircle(circle, elemToMark ){
-    	var dataToMark = $(`${elemToMark}`).parent();
-    	var bigContainer = $('.big_data_container');
-    	circle.addListener('mouseover', function() {
-          dataToMark.css('border', '2px solid red');
-          bigContainer.animate({opacity: 1, height: '90vh'}, 1000);
-
-        });
-    	circle.addListener('mouseout', function() {
-          dataToMark.css('border', '2px solid transparent');
-        });
-    }
-    markedCircle(chabryCircle, '#chab');
-    markedCircle(pulaskiegoCircle, '#pul');
-    markedCircle(pasiekaCircle, '#pas');
-    markedCircle(nwkCircle, '#nwk');
-    markedCircle(grudziceCircle, '#gru');
-    markedCircle(strzeleckaCircle, '#pil');
 }
