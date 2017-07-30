@@ -38,6 +38,9 @@ $text-white: map-get($font-colors, white);
 	margin: .500rem 0;
 	font-size: 2rem;
 }
+.text__ijp {
+	font-size: .9rem;
+}
 .station__data-pm1 {
 	@extend %station-data;
 }
@@ -54,4 +57,7 @@ $text-white: map-get($font-colors, white);
 }
 .units {
 	font-size: .750rem;
+}
+.data__bcg-green {
+	background-color: #000;
 }
