@@ -2,6 +2,7 @@
 $white-bcg: map-get($global-colors, white);
 $light-gray-bcg: map-get($global-colors, light-gray);
 $text-white: map-get($font-colors, white);
+$text-orange: map-get($font-colors, orange);
 
 // +++ +++ extends +++ +++
 %station-data {
@@ -12,6 +13,8 @@ $text-white: map-get($font-colors, white);
 	background-color: green;
 	color: $text-white;
 }
+
+// +++ +++ genreal content +++ +++
 .data__container {
 	width: 100%;
 	padding: .750rem;
@@ -21,6 +24,10 @@ $text-white: map-get($font-colors, white);
 	text-transform: uppercase;
 	text-align: center;
 }
+.data__container-graybcg {
+	background-color: $light-gray-bcg;
+}
+// +++ IJP data +++
 .station__container {
 	width: 100%;
 	margin-top: .500rem;
@@ -34,29 +41,19 @@ $text-white: map-get($font-colors, white);
 .station__data-ijp {
 	@extend %station-data;
 }
-.data__ijp {
-	margin: .500rem 0;
+.data__ijp, .data__pm2, .data__pm1 {
+	margin: .250rem 0;
 	font-size: 2rem;
+	font-weight: 400;
 }
-.text__ijp {
+.text__ijp, .units {
 	font-size: .9rem;
 }
 .station__data-pm1 {
 	@extend %station-data;
 }
-.data__pm1 {
-	margin: .500rem 0;
-	font-size: 2rem;
-}
 .station__data-pm2 {
 	@extend %station-data;
-}
-.data__pm2 {
-	margin: .500rem;
-	font-size: 2rem;
-}
-.units {
-	font-size: .750rem;
 }
 .data__bcg-dgreen {
 	background-color: #1b5e20;
@@ -75,4 +72,22 @@ $text-white: map-get($font-colors, white);
 }
 .data__bcg-black {
 	background-color: #000;
+}
+// +++ Weather data +++
+.data__container-weather {
+	margin-top: .500rem;
+	padding: 1rem 0;
+	color: $text-orange;
+	text-align: center;
+}
+.weather__currnet-condition {
+	width: 45%;
+	font-size: 4rem;
+}
+.weather__currnet-temp {
+	width: 50%;
+	font-size: 3.25rem;
+	span {
+		font-weight: 400;
+	}
 }

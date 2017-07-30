@@ -5,7 +5,10 @@ const IJPApi = (()=> {
 		domStrings: {
 			ijpData: '.station__data-ijp',
 			pm10Data: '.station__data-pm1',
-			pm25Data: '.station__data-pm2'
+			pm25Data: '.station__data-pm2',
+			IJPDataContainer: '.data__container-ijp',
+			cond: '.weather__currnet-condition',
+			temp: '.weather__currnet-temp'
 		},
 		ijpApi: {
 			apiKey: '1487184056',
@@ -15,14 +18,31 @@ const IJPApi = (()=> {
 				pileckiego: '6001940094f8',
 				pasieka: '5ccf7fc17d7d',
 				nowaWiesKrol: '5ccf7fc18052',
-				grudzice: '60019400a82b'
+				grudzice: '60019400a82b',
+				osAlSolid: 'a020a6036801'
 
 			}
 		},
 		apixuApi: {
-
+			apiKey: '48147044f89b4001831152133171402',
+			location: 'Opole'
 		}
 	};
+	// connection to APIXU API
+	const connectionToAPIXU = ()=> {
+		const request = new Request(`http://api.apixu.com/v1/current.json?key=${appOptions.apixuApi.apiKey}&q=${appOptions.apixuApi.location}`, {
+			method: 'GET'
+		});
+		fetch(request)
+			.then((response)=> {
+				let weatherData;
+				return weatherData = response.json();
+			})
+			.then((weatherData)=> {
+				console.log(weatherData);
+				insertAPIXUData(weatherData);
+			});
+	}
 	// connection to API - loop trought all IJP points
 	const connectionToIJP = ()=> {
 		for(let point of Object.values(appOptions.ijpApi.pointsId)){
@@ -40,9 +60,39 @@ const IJPApi = (()=> {
 			});	
 		};
 	};
-	// insert data to DOM
+	// insert APIXU - weather data to DOM
+	const insertAPIXUData = (weatherData)=> {
+		let currentCondition,
+			currentCond = document.querySelector(appOptions.domStrings.cond),
+			currentTemp = document.querySelector(appOptions.domStrings.temp).firstElementChild;
+
+		// insert current condition to the DOM
+		currentCondition = checkCurrentWeatherCondition(weatherData);
+		currentCond.innerHTML = currentCondition;
+		//insert currnet tem to the DOM
+		currentTemp.innerHTML = weatherData.current.temp_c;
+	};
+
+	// check for current condition
+	const checkCurrentWeatherCondition = (weatherData)=> {
+		 if (weatherData.current.is_day === 1) {
+		 	if (weatherData.current.condition.code === 1000) {
+		 		return '<i class="wi wi-day-sunny"></i>';
+		 	} else if (weatherData.current.condition.code === 1003) {
+		 		return '<i class="wi wi-day-cloudy"></i>';
+		 	}
+		 } else {
+		 	if (weatherData.current.condition.code === 1000) {
+		 		return '<i class="wi wi-night-clear"></i>';
+		 	} else if (weatherData.current.condition.code === 1003) {
+		 		return '<i class="wi wi-night-alt-cloudy"></i>';
+		 	}
+		 }
+	};
+	// insert IJP - air condition data to DOM
 	const insertIJPData = (data)=> {
-		let html, stationName, ijpBcgColor, pm25BcgColor, pm10BcgColor;
+		let html, stationName, ijpBcgColor, pm25BcgColor, pm10BcgColor,
+			container = document.querySelector(appOptions.domStrings.IJPDataContainer);
 			// getting the coect nam of station
 			stationName = nameChange(data);
 			ijpBcgColor = checkValueOfIJP(data);
@@ -51,7 +101,7 @@ const IJPApi = (()=> {
 
 			// insertin data to the DOM
 			html = `<div class="station__container"><h2 class="station__container-header">${stationName}</h2><div class="station__container-data flex flex__row flex__justify-between"><div class="station__data-ijp ${ijpBcgColor}"><h3>IJP</h3><p class="data__ijp">${data.IJP}</p><p class="text__ijp">${data.IJPString}</p></div><div class="station__data-pm2 ${pm25BcgColor}"><h3>PM 2.5</h3><p class="data__pm2">${data.PM25}</p><p class="units">&microg/m<sup>3</sup></p></div><div class="station__data-pm1 ${pm10BcgColor}"><h3>PM 10</h3><p class="data__pm1">${data.PM10}</p><p class="units">&microg/m<sup>3</sup></p></div></div></div>`;
-			document.querySelector('.data__container-data').insertAdjacentHTML('beforeend', html);			
+			container.insertAdjacentHTML('beforeend', html);			
 	};
 	
 	// change the name of teh IJP station
@@ -70,6 +120,8 @@ const IJPApi = (()=> {
 			station = 'LO nr II - Puławskiego';
 		} else if (data.Name === 'Opole_Opolski_Alarm_SmogowyBuhla') {
 			station = 'Opole - Groszowice';
+		} else if (data.Name === 'Opole_OAS_AlSolidarnosci') {
+			station = 'Aleja Solidarności';
 		}
 		return station;
 	};
@@ -141,6 +193,7 @@ const IJPApi = (()=> {
 		init: ()=> {
 			console.log('app is running!');
 			connectionToIJP();
+			connectionToAPIXU();
 		}
 	};
 })();
