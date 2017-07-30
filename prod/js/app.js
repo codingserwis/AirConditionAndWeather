@@ -135,26 +135,6 @@ const IJPApi = (()=> {
 		}
 		return pm10Bcg;
 	};
-//	const checkValueOfPM10 = (data)=> {
-//		let 
-	// 	let pm10Container = document.querySelectorAll(appOptions.domStrings.pm10Data);
-
-	// 	pm10Container.forEach((element)=> {
-	// 		if (data.PM10 >= 0 && data.PM10 <= 20) {
-	// 			element.style.backgroundColor = '#1b5e20';
-	// 		} else if (data.PM10 >= 21 && data.PM10 <= 60) {
-	// 			element.style.backgroundColor = '#8bc34a';
-	// 		} else if (data.PM10 >= 61 && data.PM10 <= 100) {
-	// 			element.style.backgroundColor = '#fdd835';
-	// 		} else if (data.PM10 >= 101 && data.PM10 <= 140) {
-	// 			element.style.backgroundColor = '#bf360c';
-	// 		} else if (data.PM10 >= 141 && data.PM10 <= 200) {
-	// 			element.style.backgroundColor = '#b71c1c';
-	// 		} else if (data.PM10 > 201) {
-	// 			element.style.backgroundColor = '#000';
-	// 		}
-	// 	});
-//	};
 
 	// public functions 
 	return {

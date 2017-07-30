@@ -62,7 +62,16 @@ $text-white: map-get($font-colors, white);
 	background-color: #1b5e20;
 }
 .data__bcg-green {
-	background-color: #1b5e20;
+	background-color: #8bc34a;
+}
+.data__bcg-yellow {
+	background-color: #fdd835;
+}
+.data__bcg-orange {
+	background-color: #ff5722;
+}
+.data__bcg-red {
+	background-color: #b71c1c;
 }
 .data__bcg-black {
 	background-color: #000;
