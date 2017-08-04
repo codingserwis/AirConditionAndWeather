@@ -11,14 +11,15 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/weather-icons.min.css">
 		<title>IJP w Opolu</title>
 	</head>
-	<body class="flex">
-		<div id="map"></div>
+	<body>
+	<div class="flex flex__direction-reverse">
+		<div id="map"></div> <!-- google map-->
 		<div id="api__container">
 			<div class="flex flex__col-mob">
 				<div class="data__container flex flex__col-mob">
 					<h1 class="data__container-header">Indeks jakości powietrza w opolu</h1>
 					<div class="data__container-ijp"></div>
-				</div>
+				</div> <!-- end of IJP data conainer -->
 				<div class="data__container flex flex__col-mob">
 					<h1 class="data__container-header">Aktualna pogoda w Opolu</h1>
 					<div class="data__container-weather data__container-graybcg">
@@ -29,69 +30,10 @@
 							</div>
 						</div>
 					</div>
-				</div>		
+				</div> <!-- end of weather container -->	
 			</div>
-		</div>
-		<!--	<div class="weather_data cf">
-				<h1 class="cont_header">Pogoda w Opolu</h1>
-				<div class="weather_info cf">
-					<div class="currner_weather">
-						<h3>Aktualnie</h3>
-						<div class="actual_info cf">
-							<div class="act_condition left"></div>
-							<div class="act_temp left"></div>
-						</div>
-						<h3>Wiatr</h3>
-						<div class="wind_block cf">
-							<div class="w_wind_dir left"></div>
-							<div class="w_wind_speed left"></div>
-						</div>
-						<div class="weather_other_info">
-							<div class="w_presure"></div>
-							<div class="w_precip_mm"></div>
-							<div class="w_humidity"></div>
-							<div class="w_feels"></div>
-							<div class="w_vis"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> -->
+		</div> <!-- end of api container-->
+	</div>
 		<script type="text/javascript" src="assets/js/app.js"></script>
-		<!-- <script>
-      function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-    </script> -->
-    	<!-- <script type="text/javascript" src="assets/js/map.js"></script> -->
-		<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyeImWmy1LmNodXs2VPwMnW0-T_W_rHLw&callback=initMap"></script> -->
-		
-		<!-- <script src="//maps.googleapis.com/maps/api/js?=AIzaSyBdu0J0UicTomSkPxxBJWNvFOTk3JsEI5I"
-        type="text/javascript"></script>
-        <script type="text/javascript">
-    function initialize() {
-      var map = new google.maps.Map(
-        document.getElementById('map'), {
-          center: new google.maps.LatLng(37.4419, -122.1419),
-          zoom: 13,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-      });
-
-      var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(37.4419, -122.1419),
-            map: map
-      });
-
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-    </script> -->
 	</body>
 </html>

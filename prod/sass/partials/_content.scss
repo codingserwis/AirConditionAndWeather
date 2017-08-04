@@ -23,12 +23,17 @@ $text-orange: map-get($font-colors, orange);
 			z-index: -1;
 		}
 }
+.map__info-header {
+	font-size: 1rem;
+	font-weight: 400;
+}
 // +++ +++ API container +++ +++
 #api__container {
 	width: 100%;
 		@include for-desktop {
+			overflow: hidden;
 			width: 45%;
-			height: 100%;
+			max-height: 100vh;
 			z-index: 10;
 		}
 }

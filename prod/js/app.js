@@ -1,5 +1,27 @@
 const GoogleMap = (()=> {
 
+	//config for google maps
+	const mapConfig = {
+		basicMapConf: {
+			domStr: 'map',
+			zoom: 13,
+			position: {
+				lat: 50.6572484,
+				long: 17.9211345
+			}
+		}
+	};
+
+	// map markers title and positions
+	const IJPMarkers = [
+		['Pasieka', 50.6619, 17.9201],
+		['Chabry', 50.6791, 17.9265],
+		['LO II', 50.6733, 17.925],
+		['Grudzice', 50.6515, 17.9857],
+		['Groszowice', 50.6249, 17.9594],
+		['Nowa Wieś Królewska', 50.6533, 17.9521],
+		['Al. Solidarności', 50.6747, 17.9679]
+	];
 	//loading map
 	const mapLoad = ()=> {
 		let script = document.createElement('script');
@@ -10,19 +32,33 @@ const GoogleMap = (()=> {
 
 	//create map 
 	const createMap = ()=> {
-		var uluru = {lat: 50.6705469, lng: 17.8830356};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 13,
+		// map position
+		let uluru = {
+			lat: mapConfig.basicMapConf.position.lat, 
+			lng: mapConfig.basicMapConf.position.long
+		};
+
+		// create map
+        let map = new google.maps.Map(document.getElementById(mapConfig.basicMapConf.domStr), {
+          zoom: mapConfig.basicMapConf.zoom,
           center: uluru
+        });
+
+        // loop for markers
+        IJPMarkers.forEach((elem)=> {
+        	let position = new google.maps.LatLng(elem[1], elem[2]);
+			let windowContent = `<h1 class="map__info-header">${elem[0]}</h1>`;
+			let infoWindow = new google.maps.InfoWindow({
+				content: windowContent
+			});
+			infoWindow.setPosition(position);
+			infoWindow.open(map);
         });
 	};
 
 	return {
-		init: mapLoad, //init,
+		init: mapLoad,
 		create: createMap
-		// init: ()=> {
-		// 	mapLoad();
-		// 	createMap();
 	};
 
 })();
@@ -88,9 +124,10 @@ const IJPApi = ((gmap)=> {
 			.then((data)=> {
 				console.log(data);
 				insertIJPData(data)
-			});	
+			});
 		};
 	};
+
 	// insert APIXU - weather data to DOM
 	const insertAPIXUData = (weatherData)=> {
 		let currentCondition,
@@ -100,6 +137,7 @@ const IJPApi = ((gmap)=> {
 		// insert current condition to the DOM
 		currentCondition = checkCurrentWeatherCondition(weatherData);
 		currentCond.innerHTML = currentCondition;
+		
 		//insert currnet tem to the DOM
 		currentTemp.innerHTML = weatherData.current.temp_c;
 	};
@@ -250,43 +288,3 @@ const IJPApi = ((gmap)=> {
 })(GoogleMap);
 
 IJPApi.init();
-
-
-
-
-
-
-
-
-
-// const connectionController = (()=> {
-// 	const pointsConfig = {
-// 		apiKey: '1487184056',
-// 		points: {
-// 			chabry: {
-// 				key: '5ccf7fc18200'
-// 			}
-// 		}
-// 	};
-// 	return {
-// 		connectToIJPApi: ()=> {
-
-// 			console.log(pointsConfig);
-// 			console.log('api con i done');
-// 		},
-// 		publicTest: ()=> {
-// 			console.log('connectionCtrl is running!');
-// 		}
-// 	}
-// })();
-// const api = ((conCtrl)=>{
-// 	return {
-// 		init: ()=> {
-// 			console.log('app is running!');
-// 			conCtrl.connectToIJPApi();
-// 			conCtrl.publicTest();
-// 		}
-// 	};
-// })(connectionController);
-
-// api.init();
