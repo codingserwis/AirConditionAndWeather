@@ -1,4 +1,35 @@
-const IJPApi = (()=> {
+const GoogleMap = (()=> {
+
+	//loading map
+	const mapLoad = ()=> {
+		let script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCyeImWmy1LmNodXs2VPwMnW0-T_W_rHLw&callback=GoogleMap.create';
+		document.body.appendChild(script);
+	};
+
+	//create map 
+	const createMap = ()=> {
+		var uluru = {lat: 50.6705469, lng: 17.8830356};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: uluru
+        });
+	};
+
+	return {
+		init: mapLoad, //init,
+		create: createMap
+		// init: ()=> {
+		// 	mapLoad();
+		// 	createMap();
+	};
+
+})();
+
+
+
+const IJPApi = ((gmap)=> {
 	
 	//options for API
 	const appOptions = {
@@ -206,16 +237,17 @@ const IJPApi = (()=> {
 		}
 		return pm10Bcg;
 	};
-
+    
 	// public functions 
 	return {
 		init: ()=> {
 			console.log('app is running!');
 			connectionToIJP();
 			connectionToAPIXU();
+			gmap.init();
 		}
 	};
-})();
+})(GoogleMap);
 
 IJPApi.init();
 

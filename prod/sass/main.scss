@@ -4,6 +4,9 @@
 // +++ +++ variables +++ +++
 @import 'variables/_global-vars';
 
+// +++ +++ mixins +++ +++
+@import 'mixins/_rwd';
+
 // +++ +++ basic css +++ +++
 @import 'partials/_basic';
 
