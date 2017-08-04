@@ -1,298 +1,260 @@
-// *** KEY TO LOOKO2 API - 1487184056 ***
-// *** ChabryId = '5ccf7fc18200',
-// *** Puławskiego = '5ccf7fc255ee',
-// *** Pileckiego = '6001940094f8',
-// *** Pasieka = '5ccf7fc17d7d',
-// *** Nowa Wieś Królewska = '5ccf7fc18052',
-// *** Grudzice = '60019400a82b',
-// *** KEY TO APIXU WEATHER - 48147044f89b4001831152133171402 ***
-// *** BASIC URL TO API - http://api.looko2.com/?method=GetLOOKO&id=${stationID}&token=${apiKey}
-var lookoApiKey = '1487184056',
-<<<<<<< HEAD
-=======
-	chabryId = '5ccf7fc18200',
-	pulaId = '5ccf7fc255ee',
-	pilId = '6001940094f8',
-	pasId = '5ccf7fc17d7d',
-	nwkId = '5ccf7fc18052',
-	gruId = '60019400a82b',
->>>>>>> eccf6bab2d393c94dce415bf183809353145ce3c
-	apixuKey = '48147044f89b4001831152133171402',
-	apixuUrl = 'http://api.apixu.com/v1/current.json?key=48147044f89b4001831152133171402&q=Opole';
+const IJPApi = (()=> {
+	
+	//options for API
+	const appOptions = {
+		domStrings: {
+			ijpData: '.station__data-ijp',
+			pm10Data: '.station__data-pm1',
+			pm25Data: '.station__data-pm2',
+			IJPDataContainer: '.data__container-ijp',
+			cond: '.weather__currnet-condition',
+			temp: '.weather__currnet-temp'
+		},
+		ijpApi: {
+			apiKey: '1487184056',
+			pointsId: {
+				chabry: '5ccf7fc18200',
+				pulaskiego: '5ccf7fc255ee',
+				pileckiego: '6001940094f8',
+				pasieka: '5ccf7fc17d7d',
+				nowaWiesKrol: '5ccf7fc18052',
+				grudzice: '60019400a82b',
+				osAlSolid: 'a020a6036801'
 
-var points = [
-	{
-		id: '#chab',
-		kei: '5ccf7fc18200'
-	},
-	{
-		id: '#pul',
-		kei: '5ccf7fc255ee'
-	},
-	{
-		id: '#pil',
-		kei: '6001940094f8'
-	},
-	{
-		id: '#pas',
-		kei: '5ccf7fc17d7d',
-	},
-	{
-		id: '#nwk',
-		kei: '5ccf7fc18052'
-	},
-	{
-		id: '#gru',
-		kei: '60019400a82b'
-	}
-];
-
-function connectToApi(){
-	points.forEach(function(index, value){
-		$.ajax({
-			url: `http://api.looko2.com/?method=GetLOOKO&id=${index.kei}&token=${lookoApiKey}`,
-			dataType: 'json',
-			type: 'GET'
-		}).done(function(response){
-			insertData(response, index.id);
-		}).fail(function(error){
-			console.log(error);
-		});
-	});
-}
-// *** Połączenie do APIXU API ***
-	function connectionToApixu(){
-		$.ajax({
-			url: apixuUrl,
-			dataType: 'json',
-			type: 'GET'
-		}).done(function(response){
-			insertWeatherData(response);
-		}).fail(function(error){
-			console.log(error);
-		})
-	}
-// *** Sprawdzanie warunków pogodowych ***
-	function checkWeatherCondition(response){
-		if (response.current.is_day === 1){
-			if(response.current.condition.code === 1000){
-				return '<i class="wi wi-day-sunny"></i>';
-			} else if(response.current.condition.code === 1003){
-				return '<i class="wi wi-day-cloudy"></i>';
-			} else if(response.current.condition.code === 1006){
-				return '<i class="wi wi-day-cloudy"></i>';
 			}
-		} else {
-			if(response.current.condition.code === 1000){
-				return '<i class="wi wi-night-clear"></i>';
-			} else if(response.current.condition.code === 1003){
-				return '<i class="wi wi-night-alt-cloudy"></i>';
-			} else if(response.current.condition.code === 1006){
-				return '<i class="wi wi-night-alt-cloudy"></i>';
-			} else if (response.current.condition.code === 1183){
-				return '<i class="wi wi-night-alt-hail"></i>';
-			}
-		}	
-	}
-
-// *** Dane pogodowe ***
-	function insertWeatherData(response){
-		var windDir = response.current.wind_dir.toLowerCase(),
-			wCondition = $('.act_condition'),
-			wTemp = $('.act_temp'),
-			wWindSpeed = $('.w_wind_speed'),
-			wWindDir = $('.w_wind_dir'),
-			wPresure = $('.w_presure'),
-			wPrecipMm = $('.w_precip_mm'),
-			wHumidity = $('.w_humidity'),
-			wFeels = $('.w_feels'),
-			wVis = $('.w_vis');
-
-			wCondition.html(checkWeatherCondition(response));
-			wTemp.html(`<p>${response.current.temp_c}&ordmC</p>`);
-			wWindDir.html(`<i class="wi wi-wind wi-from-${windDir}"></i>`);
-			wWindSpeed.html(`<span>${response.current.wind_kph} km/h</span>`);
-			wPresure.html(`<span>Ciśniene: ${response.current.pressure_mb} mb</span>`);
-			wPrecipMm.html(`<span>Ilosc opadów: ${response.current.precip_mm} mm</span>`);
-			wHumidity.html(`<span>Wilgotność: ${response.current.humidity} %</span>`);
-			wFeels.html(`<span>Temp. odczuwalna: ${response.current.feelslike_c} &ordmC</span>`);
-			wVis.html(`<span>Widoczność: ${response.current.vis_km} km</span>`);
-	}
-// *** Sprawdzanie poziomu IJP
-	function checkValueOfIjp(paramName, elemId){
-			if(paramName >= 0 && paramName <= 1){
-				elemId.css('background-color', '#1b5e20');
-			} else if(paramName >= 2 && paramName <= 3){
-				elemId.css('background-color', '#8bc34a');
-			} else if(paramName >= 4 && paramName <= 5){
-				elemId.css('background-color', '#fdd835');
-			} else if(paramName >= 6 && paramName <= 7){
-				elemId.css('background-color', '#bf360c');
-			} else if(paramName >= 8 && paramName <= 9){
-				elemId.css('background-color', '#b71c1c');
-			} else if(paramName >= 10){
-				elemId.css('background-color', '#000');
-			}
-	}
-	function checkValueOfPm2(paramName, elemId){
-		if(paramName >= 0 && paramName <= 12){
-				elemId.css('background-color', '#1b5e20');
-			} else if(paramName >= 13 && paramName <= 36){
-				elemId.css('background-color', '#8bc34a');
-			} else if(paramName >= 37 && paramName <= 60){
-				elemId.css('background-color', '#fdd835');
-			} else if(paramName >= 61 && paramName <= 84){
-				elemId.css('background-color', '#bf360c');
-			} else if(paramName >= 85 && paramName <= 120){
-				elemId.css('background-color', '#b71c1c');
-			} else if(paramName > 121){
-				elemId.css('background-color', '#000');
-			}
-	}		
-	function checkValueOfPm10(paramName, elemId){
-		if(paramName >= 0 && paramName <= 20){
-				elemId.css('background-color', '#1b5e20');
-			} else if(paramName >= 21 && paramName <= 60){
-				elemId.css('background-color', '#8bc34a');
-			} else if(paramName >= 61 && paramName <= 100){
-				elemId.css('background-color', '#fdd835');
-			} else if(paramName >= 101 && paramName <= 140){
-				elemId.css('background-color', '#bf360c');
-			} else if(paramName >= 141 && paramName <= 200){
-				elemId.css('background-color', '#b71c1c');
-			} else if(paramName > 201){
-				elemId.css('background-color', '#000');
-			}
-	}	
-
-// *** Wstawianie danych ***
-	function insertData(response, stId){
-		var stationIjp = $(`${stId}`).find('.ijp_data'),
-			stationPm25 = $(`${stId}`).find('.pm25_data'),
-			stationPm10 = $(`${stId}`).find('.pm10_data');
-
-			stationIjp.html(`<h3>IJP</h3><p class="ijp">${response.IJP}</p>`);
-			stationPm25.html(`<h3>PM 2.5</h3><p>${response.PM25}</p><p class="units">&microg/m<sup>3</sup></p>`);
-			stationPm10.html(`<h3>PM 10</h3><p>${response.PM10}</p><p class="units">&microg/m<sup>3</sup></p>`);
-
-			checkValueOfIjp(response.IJP, stationIjp);
-			checkValueOfPm2(response.PM25, stationPm25);
-			checkValueOfPm10(response.PM10, stationPm10);
-
-	}
-// *** Akcje na doomie ***
-// *** Document listner ***
-$(document).ready(function(){
-	// *** Wywołanie funkcji ***
-	connectToApi();
-	connectionToApixu();
-});
-
-// *** Mapa Google ***
-var chabryStr = {
-		center: {
-			lat: 50.6791, 
-			lng: 17.9265
+		},
+		apixuApi: {
+			apiKey: '48147044f89b4001831152133171402',
+			location: 'Opole'
 		}
-	},
-	pulawskiegoStr = {center: {lat: 50.6733, lng: 17.925}},
-	pasiekaStr = {center: {lat: 50.6619, lng: 17.9201}},
-	nowaWkStr = {center: {lat: 50.6533, lng: 17.9521}},
-	grudziceStr = {center: {lat: 50.6515, lng: 17.9857}},
-	strzeleckaStr = {center: {lat: 50.6711, lng: 17.9260}}; 
-// *** Inicjalizacja Mapy Google ***
-function initMap() {
-    var uluru = {lat: 50.6705469, lng: 17.8830356};
-    var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 13,
-    center: uluru,
-    disableDefaultUI: true,
-    });
+	};
+	// connection to APIXU API
+	const connectionToAPIXU = ()=> {
+		const request = new Request(`http://api.apixu.com/v1/current.json?key=${appOptions.apixuApi.apiKey}&q=${appOptions.apixuApi.location}`, {
+			method: 'GET'
+		});
+		fetch(request)
+			.then((response)=> {
+				let weatherData;
+				return weatherData = response.json();
+			})
+			.then((weatherData)=> {
+				console.log(weatherData);
+				insertAPIXUData(weatherData);
+			});
+	}
+	// connection to API - loop trought all IJP points
+	const connectionToIJP = ()=> {
+		for(let point of Object.values(appOptions.ijpApi.pointsId)){
+			const request = new Request(`http://api.looko2.com/?method=GetLOOKO&id=${point}&token=${appOptions.ijpApi.apiKey}`, {
+			method: 'GET'
+		});
+		fetch(request)
+			.then((response)=> {
+				let data;
+				return data = response.json();
+			})
+			.then((data)=> {
+				console.log(data);
+				insertIJPData(data)
+			});	
+		};
+	};
+	// insert APIXU - weather data to DOM
+	const insertAPIXUData = (weatherData)=> {
+		let currentCondition,
+			currentCond = document.querySelector(appOptions.domStrings.cond),
+			currentTemp = document.querySelector(appOptions.domStrings.temp).firstElementChild;
 
-// *** Punktuy pomiarowe na mapie ***
-		
+		// insert current condition to the DOM
+		currentCondition = checkCurrentWeatherCondition(weatherData);
+		currentCond.innerHTML = currentCondition;
+		//insert currnet tem to the DOM
+		currentTemp.innerHTML = weatherData.current.temp_c;
+	};
+
+	// check for current condition
+	const checkCurrentWeatherCondition = (weatherData)=> {
+		 if (weatherData.current.is_day === 1) {
+		 	if (weatherData.current.condition.code === 1000) {
+		 		return '<i class="wi wi-day-sunny"></i>';
+		 	} else if (weatherData.current.condition.code === 1003) {
+		 		return '<i class="wi wi-day-cloudy"></i>';
+		 	}
+		 } else {
+		 	if (weatherData.current.condition.code === 1000) {
+		 		return '<i class="wi wi-night-clear"></i>';
+		 	} else if (weatherData.current.condition.code === 1003) {
+		 		return '<i class="wi wi-night-alt-cloudy"></i>';
+		 	}
+		 }
+	};
+	// insert IJP - air condition data to DOM
+	const insertIJPData = (data)=> {
+		let html, stationName, ijpBcgColor, pm25BcgColor, pm10BcgColor,
+			container = document.querySelector(appOptions.domStrings.IJPDataContainer);
+			// getting the coect nam of station
+			stationName = nameChange(data);
+			ijpBcgColor = checkValueOfIJP(data);
+			pm25BcgColor = checkValueOfPM25(data);
+			pm10BcgColor = checkValueOfPM10(data);
+
+			// insertin data to the DOM
+			html = `<div class="station__container">
+						<h2 class="station__container-header">${stationName}</h2>
+						<div class="station__container-data flex flex__row flex__justify-between">
+							<div class="station__data-ijp ${ijpBcgColor}">
+								<h3>IJP</h3>
+								<p class="data__ijp">${data.IJP}</p>
+								<p class="text__ijp">${data.IJPString}</p>
+							</div>
+							<div class="station__data-pm2 ${pm25BcgColor}">
+								<h3>PM 2.5</h3>
+								<p class="data__pm2">${data.PM25}</p>
+								<p class="units">&microg/m<sup>3</sup></p>
+							</div>
+							<div class="station__data-pm1 ${pm10BcgColor}">
+								<h3>PM 10</h3>
+								<p class="data__pm1">${data.PM10}</p>
+								<p class="units">&microg/m<sup>3</sup></p>
+							</div>
+						</div>
+					</div>`;
+			container.insertAdjacentHTML('beforeend', html);			
+	};
+	
+	// change the name of teh IJP station
+	const nameChange = (data)=> {
+		let station;
+
+		if (data.Name === 'Opole_Opolski_Alarm_Smogowy_Grud') {
+			station = 'Grudzice';
+		} else if (data.Name === 'Opole_STE_Silesia_Chabry') {
+			station = 'Osiedle Chabry';
+		} else if (data.Name === 'Opole_Opolski_Alarm_Smogowy_NWK') {
+			station = 'Nowa Wieś Królewska';
+		} else if (data.Name === 'Opole_Komitet_Obrony_Pasieki_Pas') {
+			station = 'Pasieka';
+		} else if (data.Name === 'Opole_Liceum_NR_II_Pulaskiego3') {
+			station = 'LO nr II - Puławskiego';
+		} else if (data.Name === 'Opole_Opolski_Alarm_SmogowyBuhla') {
+			station = 'Opole - Groszowice';
+		} else if (data.Name === 'Opole_OAS_AlSolidarnosci') {
+			station = 'Aleja Solidarności';
+		}
+		return station;
+	};
+
+	// setting the bcg color of IJP container
+	const checkValueOfIJP = (data)=> {
+		let ijpBcg;
+
+		if (data.IJP >= 0 && data.IJP <= 1) {
+			ijpBcg = 'data__bcg-dgreen';
+		} else if (data.IJP >= 2 && data.IJP <= 3) {
+			ijpBcg = 'data__bcg-green';
+		} else if (data.IJP >= 4 && data.IJP <= 5) {
+			ijpBcg = 'data__bcg-yellow';
+		} else if (data.IJP >= 6 && data.IJP <= 7) {
+			ijpBcg = 'data__bcg-orange';
+		} else if (data.IJP >= 8 && data.IJP <= 9) {
+			ijpBcg = 'data__bcg-red';
+		} else if (data.IJP >= 10) {
+			ijpBcg = 'data__bcg-black';
+		}
+
+		return ijpBcg;
+	};
+
+	// setting the bcg color of PM2.5 container
+	const checkValueOfPM25 = (data)=> {
+		let pm25Bcg;
+
+		if (data.PM25 >= 0 && data.PM25 <= 12) {
+		 	pm25Bcg = 'data__bcg-dgreen';
+	 	} else if (data.PM25 >= 13 && data.PM25 <= 36) {
+			pm25Bcg = 'data__bcg-green';
+		} else if (data.PM25 >= 37 && data.PM25 <= 60) {
+			pm25Bcg = 'data__bcg-yellow';
+		} else if (data.PM25 >= 61 && data.PM25 <= 84) {
+			pm25Bcg = 'data__bcg-orange';
+		} else if (data.PM25 >= 85 && data.PM25 <= 120) {
+			pm25Bcg = 'data__bcg-red';
+		} else if (data.PM25 > 121) {
+			pm25Bcg = 'data__bcg-black';
+		}
+
+		return pm25Bcg;
+	};
+
+	// setting the bcg color of PM10 container
+	const checkValueOfPM10 = (data)=> {
+		let pm10Bcg;
+
+		if (data.PM10 >= 0 && data.PM10 <= 20) {
+			pm10Bcg = 'data__bcg-dgreen';
+		} else if (data.PM10 >= 21 && data.PM10 <= 60) {
+			pm10Bcg = 'data__bcg-green';
+		} else if (data.PM10 >= 61 && data.PM10 <= 100) {
+			pm10Bcg = 'data__bcg-yellow';
+		} else if (data.PM10 >= 101 && data.PM10 <= 140) {
+			pm10Bcg = 'data__bcg-orange';
+		} else if (data.PM10 >= 141 && data.PM10 <= 200) {
+			pm25Bcg = 'data__bcg-red';
+		} else if (data.PM10 > 201) {
+			pm25Bcg = 'data__bcg-black';
+		}
+		return pm10Bcg;
+	};
+
+	// public functions 
+	return {
+		init: ()=> {
+			console.log('app is running!');
+			connectionToIJP();
+			connectionToAPIXU();
+		}
+	};
+})();
+
+IJPApi.init();
 
 
-    	var chabryCircle = new google.maps.Circle({
-    		strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 1,
-            fillColor: 'red',
-            fillOpacity: 0.35,
-            map: map,
-            center: chabryStr.center,
-            radius: 400
-      	});
-        var pulaskiegoCircle = new google.maps.Circle({
-    		strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 1,
-            fillColor: 'red',
-            fillOpacity: 0.35,
-            map: map,
-            center: pulawskiegoStr.center,
-            radius: 400
-        });
-        var pasiekaCircle = new google.maps.Circle({
-    		strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 1,
-            fillColor: 'red',
-            fillOpacity: 0.35,
-            map: map,
-            center: pasiekaStr.center,
-            radius: 400
-        });
-        var nwkCircle = new google.maps.Circle({
-    		strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 1,
-            fillColor: 'red',
-            fillOpacity: 0.35,
-            map: map,
-            center: nowaWkStr.center,
-            radius: 400
-        });
-        var grudziceCircle = new google.maps.Circle({
-    		strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 1,
-            fillColor: 'red',
-            fillOpacity: 0.35,
-            map: map,
-            center: grudziceStr.center,
-            radius: 400
-        });
-        var strzeleckaCircle = new google.maps.Circle({
-    		strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 1,
-            fillColor: 'red',
-            fillOpacity: 0.35,
-            map: map,
-            center: strzeleckaStr.center,
-            radius: 400
-        });
-<<<<<<< HEAD
-=======
 
-    function markedCircle(circle, elemToMark ){
-    	var dataToMark = $(`${elemToMark}`).parent();
-    	var bigContainer = $('.big_data_container');
-    	circle.addListener('mouseover', function() {
-          dataToMark.css('border', '2px solid red');
-          bigContainer.animate({opacity: 1, height: '90vh'}, 1000);
 
-        });
-    	circle.addListener('mouseout', function() {
-          dataToMark.css('border', '2px solid transparent');
-        });
-    }
-   	markedCircle(chabryCircle, '#chab');
-    markedCircle(pulaskiegoCircle, '#pul');
-    markedCircle(pasiekaCircle, '#pas');
-    markedCircle(nwkCircle, '#nwk');
-    markedCircle(grudziceCircle, '#gru');
-    markedCircle(strzeleckaCircle, '#pil');
->>>>>>> eccf6bab2d393c94dce415bf183809353145ce3c
-}
+
+
+
+
+
+// const connectionController = (()=> {
+// 	const pointsConfig = {
+// 		apiKey: '1487184056',
+// 		points: {
+// 			chabry: {
+// 				key: '5ccf7fc18200'
+// 			}
+// 		}
+// 	};
+// 	return {
+// 		connectToIJPApi: ()=> {
+
+// 			console.log(pointsConfig);
+// 			console.log('api con i done');
+// 		},
+// 		publicTest: ()=> {
+// 			console.log('connectionCtrl is running!');
+// 		}
+// 	}
+// })();
+// const api = ((conCtrl)=>{
+// 	return {
+// 		init: ()=> {
+// 			console.log('app is running!');
+// 			conCtrl.connectToIJPApi();
+// 			conCtrl.publicTest();
+// 		}
+// 	};
+// })(connectionController);
+
+// api.init();

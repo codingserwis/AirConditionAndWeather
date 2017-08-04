@@ -1,131 +1,93 @@
-// +++ CONFIG +++
-// +++ +++ FONTS +++ +++
-$bold-text: $global-font-bold;
+// +++ +++ config +++ +++
+$white-bcg: map-get($global-colors, white);
+$light-gray-bcg: map-get($global-colors, light-gray);
+$text-white: map-get($font-colors, white);
+$text-orange: map-get($font-colors, orange);
 
-// +++ +++ COLORS +++ +++
-$google-map-bg-color: map-get($global-colors, g-map-bg);
-$small-container-bg: map-get($global-colors, global-white);
-$station-short-info-bg: map-get($global-colors, station-gray-bg);
-$white-font: map-get($global-colors, global-white);
-$orange-font: map-get($global-colors, global-orange);
-
-// +++ GOOGLE MAP +++
-#map {
-	display: none;
-		// @include from_sm_desktop {
-		// 	display: block;
-		// 	height: 100vh;
-		// 	width: 100vw;
-		// 	z-index: 1;
-		// 	background-color: $google-map-bg-color;
-		// }
-}
-// +++ SMALL IJP DATA CONTAINER +++
-.small_data_container {
-	margin: 0.25rem;
-	min-width: 97%;
-	padding: 0.75rem;
-	background-color: rgba($small-container-bg, 1);
-}
-.cont_header {
-	font-size: 1.2rem;
-	font-weight: 300;
-	text-align: center;
-	text-transform: uppercase;
-}
-.station_short_info {
-	width: 100%;
-	display: block;
-	margin-top: 0.5rem;
-	padding: 0.3rem;
-	background-color: rgba($station-short-info-bg, 1);
-	text-align: center;
-		h2 {
-			font-weight: 300;
-		}
-}
-.short_data {
-	width: 100%;
-	display: inline-block;
-	margin-top: 0.25rem;
-}
-// +++ DATA CONTAINERS +++
-%data {
-	width: 32.37%;
+// +++ +++ extends +++ +++
+%station-data {
+	width: 33%;
 	min-height: 90px;
-	margin-top: 0.25rem;
+	padding: .250rem;
 	text-align: center;
-	color: $white-font;	
-		h3 {
-			padding-top: 0.25rem;
-			font-weight: 300;
-		}
-		p {
-			font-size: 2rem;
-			font-weight: $bold-text;
-		}
-		.units {
-			font-size: 0.8rem;
-			font-weight: $global-font-weight;
-		}
-}
-.ijp_data {
-	@extend %data;
-}
-.pm25_data {
-	@extend %data;
-	margin-left: 0.25rem;
-	margin-right: 0.25rem;
-}
-.pm10_data {
-	@extend %data;
+	background-color: green;
+	color: $text-white;
 }
 
-// +++ WEATHER CONTAINER +++
-.weather_data {
-	margin-top: 1rem;
-}
-.weather_info {
-	display: block;
+// +++ +++ genreal content +++ +++
+.data__container {
 	width: 100%;
-	margin-top: 0.5rem;
-	padding: 0.3rem;
-	background-color: $station-short-info-bg;
-	color: $orange-font;
+	padding: .750rem;
+	background-color: $white-bcg;
 }
-.currner_weather {
+.data__container-header {
+	text-transform: uppercase;
+	text-align: center;
+}
+.data__container-graybcg {
+	background-color: $light-gray-bcg;
+}
+// +++ IJP data +++
+.station__container {
 	width: 100%;
-	padding: 0.25px;
-		h3 {
-			margin-top: 0.5rem;
-			font-weight: 300;
-			text-align: center;
-		}
+	margin-top: .500rem;
+	padding: .250rem;
+	background-color: $light-gray-bcg;
 }
-.actual_info, .wind_block {
-	div {
-		font-size: 3.5rem;
-		padding: 1rem 0.5rem;
-	}
-	.act_condition, .w_wind_dir {
-		width: 50%;
-		text-align: center;
-	}
-	.act_temp {
-		width: 50%;
-	}
-	.w_wind_speed {
-		width: 50%;
-		font-size: 1.9rem;
-		padding: 2.250rem 0 0 0;
-	}
+.station__container-header {
+	text-align: center;
+	margin-bottom: .250rem;
 }
-.weather_other_info {
-		div {
-			margin: 0.5rem 0;
-			span {
-				font-size: 1.4rem;
-				font-weight: 300;
-			}
-		}
+.station__data-ijp {
+	@extend %station-data;
+}
+.data__ijp, .data__pm2, .data__pm1 {
+	margin: .250rem 0;
+	font-size: 2rem;
+	font-weight: 400;
+}
+.text__ijp, .units {
+	font-size: .9rem;
+}
+.station__data-pm1 {
+	@extend %station-data;
+}
+.station__data-pm2 {
+	@extend %station-data;
+}
+.data__bcg-dgreen {
+	background-color: #1b5e20;
+}
+.data__bcg-green {
+	background-color: #8bc34a;
+}
+.data__bcg-yellow {
+	background-color: #fdd835;
+}
+.data__bcg-orange {
+	background-color: #ff5722;
+}
+.data__bcg-red {
+	background-color: #b71c1c;
+}
+.data__bcg-black {
+	background-color: #000;
+}
+// +++ Weather data +++
+.data__container-weather {
+	margin-top: .500rem;
+	padding: 1rem 0;
+	color: $text-orange;
+	text-align: center;
+}
+.weather__currnet-condition {
+	width: 45%;
+	font-size: 4rem;
+}
+.weather__currnet-temp {
+	width: 50%;
+	font-size: 3.25rem;
+	span {
+		font-weight: 400;
+	}
 }

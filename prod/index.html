@@ -5,150 +5,31 @@
 		<meta name="description" content="Indeks jakoście powietrza w Opolu. Dane pomiarowe z LOOKO2.">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="keywords" content="Indeks Jakości Powietrza, Opole, SMOG, LOOKO2">
-		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet">
-		<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-		<script type="text/javascript" src="js/app.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/main.css">
-		<link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css">
-		<link rel="stylesheet" type="text/css" href="css/weather-icons.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&amp;subset=latin-ext" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+		<!-- <link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css"> -->
+		<link rel="stylesheet" type="text/css" href="assets/css/weather-icons.min.css">
 		<title>IJP w Opolu</title>
 	</head>
 	<body>
-		<div id="map"></div>
-		<div class="small_data_container cf">
-			<h1 class="cont_header">Indeks jakości powietrza w Opolu</h1>
-			<div class="cf">
-<<<<<<< HEAD
-				<div class="mrg_right left">
-					<div class="station_short_info cf">
-						<h2>Os. Chabrów</h2>
-						<div id="chab" class="short_data cf center">
-							<div class="ijp_data left">
-								<h3>IJP</h3>
-							</div>
-							<div class="pm25_data left">
-								<h3>PM 2.5</h3>
-							</div>
-							<div class="pm10_data left">
-								<h3>PM 10</h3>
-							</div>
-						</div>
-					</div>
-					<div class="station_short_info cf">
-						<h2>ul. Pułaskiego</h2>
-						<div id="pul" class="short_data cf center">
-							<div class="ijp_data left">
-								<h3>IJP</h3>
-							</div>
-							<div class="pm25_data left">
-								<h3>PM 2.5</h3>
-							</div>
-							<div class="pm10_data left">
-								<h3>PM 10</h3>
-							</div>
-						</div>
-					</div>
-					<div class="station_short_info">
-						<h2>Rondo Pileckiego</h2>
-						<div id="pil" class="short_data cf center">
-							<div class="ijp_data left">
-								<h3>IJP</h3>
-							</div>
-							<div class="pm25_data left">
-								<h3>PM 2.5</h3>
-							</div>
-							<div class="pm10_data left">
-								<h3>PM 10</h3>
-							</div>
-=======
-			
-				<div class="station_short_info cf">
-					<h2>Os. Chabrów</h2>
-					<div id="chab" class="short_data cf center">
-						<div class="ijp_data left">
-							<h3>IJP</h3>
-						</div>
-						<div class="pm25_data left">
-							<h3>PM 2.5</h3>
-						</div>
-						<div class="pm10_data left">
-							<h3>PM 10</h3>
-						</div>
-					</div>
-				</div>
-				<div class="station_short_info cf">
-					<h2>ul. Pułaskiego</h2>
-					<div id="pul" class="short_data cf center">
-						<div class="ijp_data left">
-							<h3>IJP</h3>
-						</div>
-						<div class="pm25_data left">
-							<h3>PM 2.5</h3>
-						</div>
-						<div class="pm10_data left">
-							<h3>PM 10</h3>
-						</div>
-					</div>
-				</div>
-				<div class="station_short_info">
-					<h2>Rondo Pileckiego</h2>
-					<div id="pil" class="short_data cf center">
-						<div class="ijp_data left">
-							<h3>IJP</h3>
-						</div>
-						<div class="pm25_data left">
-							<h3>PM 2.5</h3>
-						</div>
-						<div class="pm10_data left">
-							<h3>PM 10</h3>
->>>>>>> eccf6bab2d393c94dce415bf183809353145ce3c
-						</div>
-					</div>
-				</div>
-					<div class="station_short_info">
-						<h2>Pasieka</h2>
-						<div id="pas" class="short_data cf center">
-							<div class="ijp_data left">
-								<h3>IJP</h3>
-							</div>
-							<div class="pm25_data left">
-								<h3>PM 2.5</h3>
-							</div>
-							<div class="pm10_data left">
-								<h3>PM 10</h3>
-							</div>
-						</div>
-					</div>
-					<div class="station_short_info">
-						<h2>Nowa Wieś Królewska</h2>
-						<div id="nwk" class="short_data cf center">
-							<div class="ijp_data left">
-								<h3>IJP</h3>
-							</div>
-							<div class="pm25_data left">
-								<h3>PM 2.5</h3>
-							</div>
-							<div class="pm10_data left">
-								<h3>PM 10</h3>
-							</div>
-						</div>
-					</div>
-					<div class="station_short_info">
-						<h2>Grudzice</h2>
-						<div id="gru" class="short_data cf center">
-							<div class="ijp_data left">
-								<h3>IJP</h3>
-							</div>
-							<div class="pm25_data left">
-								<h3>PM 2.5</h3>
-							</div>
-							<div class="pm10_data left">
-								<h3>PM 10</h3>
-							</div>
-						</div>
-					</div>
+		<div class="flex flex__col-mob">
+			<div class="data__container flex flex__col-mob">
+				<h1 class="data__container-header">Indeks jakości powietrza w opolu</h1>
+				<div class="data__container-ijp"></div>
 			</div>
-			<div class="weather_data cf">
+			<div class="data__container flex flex__col-mob">
+				<h1 class="data__container-header">Aktualna pogoda w Opolu</h1>
+				<div class="data__container-weather data__container-graybcg">
+					<div class="flex flex_row flex__space-evenly">
+						<div class="weather__currnet-condition"></div>
+						<div class="weather__currnet-temp">
+							<span></span><span>&ordmC</span>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+		<!--	<div class="weather_data cf">
 				<h1 class="cont_header">Pogoda w Opolu</h1>
 				<div class="weather_info cf">
 					<div class="currner_weather">
@@ -172,8 +53,9 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyeImWmy1LmNodXs2VPwMnW0-T_W_rHLw&callback=initMap"
-		async defer></script>
+		</div> -->
+		<script type="text/javascript" src="assets/js/app.js"></script>
+		<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyeImWmy1LmNodXs2VPwMnW0-T_W_rHLw&callback=initMap"
+		async defer></script> -->
 	</body>
 </html>

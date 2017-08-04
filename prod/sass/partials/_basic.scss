@@ -1,22 +1,37 @@
-// +++ CONFIG +++
-// +++ +++ FONTS +++ +++
-$basic-font: $blobal-font-family;
-$basic-size: $global-font-size;
-$basic-weight: $global-font-weight;
-$basic-font-color: $global-font-color;
+// +++ +++ config +++ +++
+// +++ typography +++
+$basic-font-family: $global-main-font-family;
+$basic-font-size: $global-font-size;
+$basic-text-color: map-get($font-colors, black);
+$basic-font-weight: $global-main-font-weight;
 
-// +++ +++ COLORS +++ +++
-$basic-bg-color: map-get($global-colors, bg-color);
+// +++ colors +++
+$gray: map-get($global-colors, gray);
+
 
 html {
-	font-family: $basic-font, sans-serif;
-	font-size: $basic-size;
-	color: $basic-font-color;
-	box-sizing: border-box;
+	font-family: $basic-font-family;
+	font-size: $basic-font-size;
+	color: $basic-text-color;
+	font-weight: $basic-font-weight;
 }
 body {
-	position: relative;
-	width: 100vw;
-	height: 100vh;
-	background-color: $basic-bg-color;
+	max-width: 100%;
+	background-color: $gray;
+	padding: .250rem;
+}
+.flex {
+	display: flex;
+}
+.flex__row {
+	flex-direction: row;
+}
+.flex__col-mob {
+	flex-direction: column;
+}
+.flex__justify-between {
+	justify-content: space-between;
+}
+.flex__space-evenly {
+	justify-content: space-evenly;
 }
