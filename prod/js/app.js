@@ -100,7 +100,26 @@ const IJPApi = (()=> {
 			pm10BcgColor = checkValueOfPM10(data);
 
 			// insertin data to the DOM
-			html = `<div class="station__container"><h2 class="station__container-header">${stationName}</h2><div class="station__container-data flex flex__row flex__justify-between"><div class="station__data-ijp ${ijpBcgColor}"><h3>IJP</h3><p class="data__ijp">${data.IJP}</p><p class="text__ijp">${data.IJPString}</p></div><div class="station__data-pm2 ${pm25BcgColor}"><h3>PM 2.5</h3><p class="data__pm2">${data.PM25}</p><p class="units">&microg/m<sup>3</sup></p></div><div class="station__data-pm1 ${pm10BcgColor}"><h3>PM 10</h3><p class="data__pm1">${data.PM10}</p><p class="units">&microg/m<sup>3</sup></p></div></div></div>`;
+			html = `<div class="station__container">
+						<h2 class="station__container-header">${stationName}</h2>
+						<div class="station__container-data flex flex__row flex__justify-between">
+							<div class="station__data-ijp ${ijpBcgColor}">
+								<h3>IJP</h3>
+								<p class="data__ijp">${data.IJP}</p>
+								<p class="text__ijp">${data.IJPString}</p>
+							</div>
+							<div class="station__data-pm2 ${pm25BcgColor}">
+								<h3>PM 2.5</h3>
+								<p class="data__pm2">${data.PM25}</p>
+								<p class="units">&microg/m<sup>3</sup></p>
+							</div>
+							<div class="station__data-pm1 ${pm10BcgColor}">
+								<h3>PM 10</h3>
+								<p class="data__pm1">${data.PM10}</p>
+								<p class="units">&microg/m<sup>3</sup></p>
+							</div>
+						</div>
+					</div>`;
 			container.insertAdjacentHTML('beforeend', html);			
 	};
 	
