@@ -1,5 +1,4 @@
 const GoogleMap = (()=> {
-
 	//config for google maps
 	const mapConfig = {
 		basicMapConf: {
@@ -33,7 +32,7 @@ const GoogleMap = (()=> {
 	//create map 
 	const createMap = ()=> {
 		// map position
-		let uluru = {
+		let centerPos = {
 			lat: mapConfig.basicMapConf.position.lat, 
 			lng: mapConfig.basicMapConf.position.long
 		};
@@ -41,7 +40,7 @@ const GoogleMap = (()=> {
 		// create map
         let map = new google.maps.Map(document.getElementById(mapConfig.basicMapConf.domStr), {
           zoom: mapConfig.basicMapConf.zoom,
-          center: uluru
+          center: centerPos
         });
 
         // loop for markers
@@ -66,7 +65,6 @@ const GoogleMap = (()=> {
 
 
 const IJPApi = ((gmap)=> {
-	
 	//options for API
 	const appOptions = {
 		domStrings: {
@@ -95,19 +93,33 @@ const IJPApi = ((gmap)=> {
 			location: 'Opole'
 		}
 	};
+
+	// check the status of the connection
+	const connectionStatus = (response)=> {
+		if(response.status === 200) {
+			return Promise.resolve(response);
+		} else {
+			return Promise.reject(console.log(response.statusText));
+		}
+	}
+
+	// get data
+	const getData = (response)=> {
+		let data;
+		return data = response.json();
+	}
+
 	// connection to APIXU API
 	const connectionToAPIXU = ()=> {
 		const request = new Request(`http://api.apixu.com/v1/current.json?key=${appOptions.apixuApi.apiKey}&q=${appOptions.apixuApi.location}`, {
 			method: 'GET'
 		});
 		fetch(request)
-			.then((response)=> {
-				let weatherData;
-				return weatherData = response.json();
-			})
-			.then((weatherData)=> {
-				console.log(weatherData);
-				insertAPIXUData(weatherData);
+			.then(connectionStatus)
+			.then(getData)
+			.then(insertAPIXUData)
+			.catch((error)=> {
+				console.log(error);
 			});
 	}
 	// connection to API - loop trought all IJP points
@@ -115,17 +127,16 @@ const IJPApi = ((gmap)=> {
 		for(let point of Object.values(appOptions.ijpApi.pointsId)){
 			const request = new Request(`http://api.looko2.com/?method=GetLOOKO&id=${point}&token=${appOptions.ijpApi.apiKey}`, {
 			method: 'GET'
-		});
-		fetch(request)
-			.then((response)=> {
-				let data;
-				return data = response.json();
-			})
-			.then((data)=> {
-				console.log(data);
-				insertIJPData(data)
 			});
+			fetch(request)
+				.then(connectionStatus)
+				.then(getData)
+				.then(insertIJPData)
+				.catch((error)=> {
+					console.log(error);
+				});
 		};
+		gmap.init();
 	};
 
 	// insert APIXU - weather data to DOM
@@ -282,7 +293,6 @@ const IJPApi = ((gmap)=> {
 			console.log('app is running!');
 			connectionToIJP();
 			connectionToAPIXU();
-			gmap.init();
 		}
 	};
 })(GoogleMap);
