@@ -19,6 +19,9 @@ body {
 	max-width: 100%;
 	background-color: $gray;
 	padding: .250rem;
+		@include for-desktop {
+			padding: 0;
+		}
 }
 .flex {
 	display: flex;
@@ -34,4 +37,7 @@ body {
 }
 .flex__space-evenly {
 	justify-content: space-evenly;
+}
+.flex__direction-reverse {
+	flex-direction: row-reverse;
 }

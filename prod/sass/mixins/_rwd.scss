@@ -1,0 +1,7 @@
+// +++ +++ config +++ +++
+$m-desktop: 1024px;
+@mixin for-desktop {
+	@media (min-width: $m-desktop) {
+		@content;
+	}
+}

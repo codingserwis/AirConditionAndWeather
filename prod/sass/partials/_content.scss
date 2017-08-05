@@ -12,8 +12,34 @@ $text-orange: map-get($font-colors, orange);
 	text-align: center;
 	background-color: green;
 	color: $text-white;
+		@include for-desktop {
+			width: 25%;
+		}
 }
-
+// +++ +++ Google map +++ +++
+#map {
+	display: none;
+		@include for-desktop {
+			display: block;
+			width: 100%;
+			height: 100vh;
+			z-index: -1;
+		}
+}
+.map__info-header {
+	font-size: 1rem;
+	font-weight: 400;
+}
+// +++ +++ API container +++ +++
+#api__container {
+	width: 100%;
+		@include for-desktop {
+			overflow: hidden;
+			width: 45%;
+			max-height: 99vh;
+			z-index: 10;
+		}
+}
 // +++ +++ genreal content +++ +++
 .data__container {
 	width: 100%;

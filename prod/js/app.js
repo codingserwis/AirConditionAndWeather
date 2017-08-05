@@ -1,5 +1,70 @@
-const IJPApi = (()=> {
-	
+const GoogleMap = (()=> {
+	//config for google maps
+	const mapConfig = {
+		basicMapConf: {
+			domStr: 'map',
+			zoom: 13,
+			position: {
+				lat: 50.6572484,
+				long: 17.9211345
+			}
+		}
+	};
+
+	// map markers title and positions
+	const IJPMarkers = [
+		['Pasieka', 50.6619, 17.9201],
+		['Chabry', 50.6791, 17.9265],
+		['LO II', 50.6733, 17.925],
+		['Grudzice', 50.6515, 17.9857],
+		['Groszowice', 50.6249, 17.9594],
+		['Nowa Wieś Królewska', 50.6533, 17.9521],
+		['Al. Solidarności', 50.6747, 17.9679]
+	];
+	//loading map
+	const mapLoad = ()=> {
+		let script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCyeImWmy1LmNodXs2VPwMnW0-T_W_rHLw&callback=GoogleMap.create';
+		document.body.appendChild(script);
+	};
+
+	//create map 
+	const createMap = ()=> {
+		// map position
+		let centerPos = {
+			lat: mapConfig.basicMapConf.position.lat, 
+			lng: mapConfig.basicMapConf.position.long
+		};
+
+		// create map
+        let map = new google.maps.Map(document.getElementById(mapConfig.basicMapConf.domStr), {
+          zoom: mapConfig.basicMapConf.zoom,
+          center: centerPos
+        });
+
+        // loop for markers
+        IJPMarkers.forEach((elem)=> {
+        	let position = new google.maps.LatLng(elem[1], elem[2]);
+			let windowContent = `<h1 class="map__info-header">${elem[0]}</h1>`;
+			let infoWindow = new google.maps.InfoWindow({
+				content: windowContent
+			});
+			infoWindow.setPosition(position);
+			infoWindow.open(map);
+        });
+	};
+
+	return {
+		init: mapLoad,
+		create: createMap
+	};
+
+})();
+
+
+
+const IJPApi = ((gmap)=> {
 	//options for API
 	const appOptions = {
 		domStrings: {
@@ -28,19 +93,33 @@ const IJPApi = (()=> {
 			location: 'Opole'
 		}
 	};
+
+	// check the status of the connection
+	const connectionStatus = (response)=> {
+		if(response.status === 200) {
+			return Promise.resolve(response);
+		} else {
+			return Promise.reject(console.log(response.statusText));
+		}
+	}
+
+	// get data
+	const getData = (response)=> {
+		let data;
+		return data = response.json();
+	}
+
 	// connection to APIXU API
 	const connectionToAPIXU = ()=> {
 		const request = new Request(`http://api.apixu.com/v1/current.json?key=${appOptions.apixuApi.apiKey}&q=${appOptions.apixuApi.location}`, {
 			method: 'GET'
 		});
 		fetch(request)
-			.then((response)=> {
-				let weatherData;
-				return weatherData = response.json();
-			})
-			.then((weatherData)=> {
-				console.log(weatherData);
-				insertAPIXUData(weatherData);
+			.then(connectionStatus)
+			.then(getData)
+			.then(insertAPIXUData)
+			.catch((error)=> {
+				console.log(error);
 			});
 	}
 	// connection to API - loop trought all IJP points
@@ -48,18 +127,18 @@ const IJPApi = (()=> {
 		for(let point of Object.values(appOptions.ijpApi.pointsId)){
 			const request = new Request(`http://api.looko2.com/?method=GetLOOKO&id=${point}&token=${appOptions.ijpApi.apiKey}`, {
 			method: 'GET'
-		});
-		fetch(request)
-			.then((response)=> {
-				let data;
-				return data = response.json();
-			})
-			.then((data)=> {
-				console.log(data);
-				insertIJPData(data)
-			});	
+			});
+			fetch(request)
+				.then(connectionStatus)
+				.then(getData)
+				.then(insertIJPData)
+				.catch((error)=> {
+					console.log(error);
+				});
 		};
+		gmap.init();
 	};
+
 	// insert APIXU - weather data to DOM
 	const insertAPIXUData = (weatherData)=> {
 		let currentCondition,
@@ -69,6 +148,7 @@ const IJPApi = (()=> {
 		// insert current condition to the DOM
 		currentCondition = checkCurrentWeatherCondition(weatherData);
 		currentCond.innerHTML = currentCondition;
+		
 		//insert currnet tem to the DOM
 		currentTemp.innerHTML = weatherData.current.temp_c;
 	};
@@ -206,7 +286,7 @@ const IJPApi = (()=> {
 		}
 		return pm10Bcg;
 	};
-
+    
 	// public functions 
 	return {
 		init: ()=> {
@@ -215,46 +295,6 @@ const IJPApi = (()=> {
 			connectionToAPIXU();
 		}
 	};
-})();
+})(GoogleMap);
 
 IJPApi.init();
-
-
-
-
-
-
-
-
-
-// const connectionController = (()=> {
-// 	const pointsConfig = {
-// 		apiKey: '1487184056',
-// 		points: {
-// 			chabry: {
-// 				key: '5ccf7fc18200'
-// 			}
-// 		}
-// 	};
-// 	return {
-// 		connectToIJPApi: ()=> {
-
-// 			console.log(pointsConfig);
-// 			console.log('api con i done');
-// 		},
-// 		publicTest: ()=> {
-// 			console.log('connectionCtrl is running!');
-// 		}
-// 	}
-// })();
-// const api = ((conCtrl)=>{
-// 	return {
-// 		init: ()=> {
-// 			console.log('app is running!');
-// 			conCtrl.connectToIJPApi();
-// 			conCtrl.publicTest();
-// 		}
-// 	};
-// })(connectionController);
-
-// api.init();
