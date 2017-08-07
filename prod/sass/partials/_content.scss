@@ -13,10 +13,17 @@ $text-orange: map-get($font-colors, orange);
 	background-color: green;
 	color: $text-white;
 		@include for-desktop {
-			width: 25%;
+			width: 32%;
 		}
 }
 // +++ +++ Google map +++ +++
+.map__container {
+	display: none;
+	@include for-desktop {
+		width: 55%;
+		height: 100%;
+	}
+}
 #map {
 	display: none;
 		@include for-desktop {
@@ -54,11 +61,23 @@ $text-orange: map-get($font-colors, orange);
 	background-color: $light-gray-bcg;
 }
 // +++ IJP data +++
+.data__container-ijp {
+	@include for-desktop {
+		display: flex;
+		flex-wrap: wrap;
+	}
+}
 .station__container {
 	width: 100%;
 	margin-top: .500rem;
 	padding: .250rem;
 	background-color: $light-gray-bcg;
+		@include for-desktop {
+			width: 49%;
+			&:nth-child(2n+1) {
+			margin-right: 1%;
+		}
+		}
 }
 .station__container-header {
 	text-align: center;
@@ -74,6 +93,9 @@ $text-orange: map-get($font-colors, orange);
 }
 .text__ijp, .units {
 	font-size: .9rem;
+		@include for-desktop {
+			font-size: .825rem;
+		}
 }
 .station__data-pm1 {
 	@extend %station-data;
