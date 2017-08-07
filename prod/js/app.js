@@ -144,12 +144,13 @@ const IJPApi = ((gmap)=> {
 		let currentCondition,
 			currentCond = document.querySelector(appOptions.domStrings.cond),
 			currentTemp = document.querySelector(appOptions.domStrings.temp).firstElementChild;
+		//	console.log(weatherData);
 
 		// insert current condition to the DOM
 		currentCondition = checkCurrentWeatherCondition(weatherData);
 		currentCond.innerHTML = currentCondition;
 		
-		//insert currnet tem to the DOM
+		//insert currnet temp to the DOM
 		currentTemp.innerHTML = weatherData.current.temp_c;
 	};
 
@@ -291,8 +292,8 @@ const IJPApi = ((gmap)=> {
 	return {
 		init: ()=> {
 			console.log('app is running!');
-			connectionToIJP();
-			connectionToAPIXU();
+		//	connectionToIJP();
+		//	connectionToAPIXU();
 		}
 	};
 })(GoogleMap);

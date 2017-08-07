@@ -125,10 +125,10 @@ $text-orange: map-get($font-colors, orange);
 .data__container-weather {
 	margin-top: .500rem;
 	padding: 1rem 0;
-	color: #fff;
+	color: $text-orange;
 	text-align: center;
 }
-.weather__currnet-condition {
+.weather__currnet-condition, .moredata__wind-dir {
 	width: 45%;
 	font-size: 4rem;
 }
@@ -138,4 +138,7 @@ $text-orange: map-get($font-colors, orange);
 	span {
 		font-weight: 400;
 	}
+}
+.moredata__wind-speed {
+	font-size: 1.5rem;
 }

@@ -7,7 +7,7 @@
 		<meta name="keywords" content="Indeks Jakości Powietrza, Opole, SMOG, LOOKO2">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&amp;subset=latin-ext" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
-		<!-- <link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css"> -->
+		<link rel="stylesheet" type="text/css" href="assets/css/weather-icons-wind.min.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/weather-icons.min.css">
 		<title>IJP w Opolu</title>
 	</head>
@@ -22,10 +22,45 @@
 				<div class="data__container flex flex__col-mob">
 					<h1 class="data__container-header">Aktualna pogoda w Opolu</h1>
 					<div class="data__container-weather data__container-graybcg">
+						<div>
+							<h2>Ostatnia aktualizacja</h2>
+							2017-08-07 - 10:25
+						</div>
 						<div class="flex flex_row flex__space-evenly">
-							<div class="weather__currnet-condition"></div>
+							<div class="weather__currnet-condition">
+								<i class="wi wi-day-sunny"></i>
+							</div>
 							<div class="weather__currnet-temp">
-								<span></span><span>&ordmC</span>
+								<span>20</span><span>&ordmC</span>
+							</div>
+						</div>
+						<div class="weather__moredata">
+							<div class="weather__moredata-feels-temp">
+								<h3>temperatura odczuwalna</h3> 
+								<p>20<span>&ordmC</span></p>
+							</div>
+							<div class="weather__moredata-wind">
+								<h3>Wiatr</h3>
+								<div class="flex">
+									<div class="moredata__wind-dir">
+										<i class="wi wi-wind wi-from-ssw"></i>
+									</div>
+									<div class="moredata__wind-speed">
+										<span>100</span> <span>km/h</span>
+									</div>
+								</div>
+							</div>
+							<div>
+								<h3>ciśnienie</h3>
+								1023.0 <span>mb</span>
+							</div>
+							<div class="weather__moredata-precip">
+								<h3>Opady</h3>
+								<p>0.0 <span>mm</span></p>
+							</div>
+							<div>
+								<h3>wilgotność</h3>
+								0.0 <span>%</span>
 							</div>
 						</div>
 					</div>
