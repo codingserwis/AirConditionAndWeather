@@ -24,27 +24,27 @@
 					<div class="data__container-weather data__container-graybcg">
 						<div class="weather__lastupdate">
 							<h2 class="weather__lastupdate-header">Ostatnia aktualizacja</h2>
-							<p class="weather__lastupdate-content">2017-08-07 - 10:25</p>
+							<p class="weather__lastupdate-content"></p>
 						</div>
 						<div class="flex flex_row flex__space-evenly">
 							<div class="weather__currnet-condition">
 								<i class="wi wi-day-sunny"></i>
 							</div>
 							<div class="weather__currnet-temp">
-								<span>20</span><span>&ordmC</span>
+								<span></span><span>&ordmC</span>
 							</div>
 						</div>
 						<div class="weather__moredata">
 							<div class="weather__moredata-feelstemp">
 								<h3>temperatura odczuwalna</h3> 
-								<p>20<span>&ordmC</span></p>
+								<div class="feelstemp__container">
+									<span></span> <span>&ordmC</span>
+								</div>
 							</div>
 							<div class="weather__moredata-wind">
 								<h3>Wiatr</h3>
 								<div class="flex">
-									<div class="moredata__wind-dir">
-										<i class="wi wi-wind wi-from-ssw"></i>
-									</div>
+									<div class="moredata__wind-dir"></div>
 									<div class="moredata__windspeed">
 										<span class="windspeed-speed">100</span> <span class="windspeed-units">km/h</span>
 									</div>
@@ -52,15 +52,21 @@
 							</div>
 							<div class="weather__moredata-presure">
 								<h3>ciśnienie</h3>
-								<p>1023.0 <span>mb</span></p>
+								<div class="pressure__container"> 
+									<span></span> <span>mb</span>
+								</div>
 							</div>
 							<div class="weather__moredata-precip">
 								<h3>Opady</h3>
-								<p>0.0 <span>mm</span></p>
+								<div class="precip__container"> 
+									<span></span> <span>mm</span>
+								</div>
 							</div>
 							<div class="weather__moredata-humidity">
 								<h3>wilgotność</h3>
-								<p>0.0 <span>%</span></p>
+								<div class="humidity__container">
+									<span></span> <span>%</span>
+								</div>
 							</div>
 						</div>
 					</div>

@@ -22,9 +22,16 @@ $text-orange: map-get($font-colors, orange);
 		margin: .225rem 0;
 		text-transform: uppercase;
 	}
-	p {
-		font-size: 1.250rem;
+}
+%more-weather-data-content {
+	span {
+		font-size: 1.225rem;
 		font-weight: 400;
+	}
+	span {
+		&:last-child {
+			font-weight: 300;
+		}
 	}
 }
 // +++ +++ Google map +++ +++
@@ -170,7 +177,9 @@ $text-orange: map-get($font-colors, orange);
 		margin-bottom: .225rem;
 		text-transform: uppercase;
 	}
-	p {
+}
+.feelstemp__container{
+	span {
 		font-size: 2rem;
 		font-weight: 400;
 	}
@@ -189,9 +198,16 @@ $text-orange: map-get($font-colors, orange);
 }
 .weather__moredata-precip {
 	@extend %more-weather-data;
-
 }
 .weather__moredata-humidity {
 	@extend %more-weather-data;
-
+}
+.pressure__container {
+	@extend %more-weather-data-content;
+}
+.precip__container {
+	@extend %more-weather-data-content;
+}
+.humidity__container {
+	@extend %more-weather-data-content;
 }
