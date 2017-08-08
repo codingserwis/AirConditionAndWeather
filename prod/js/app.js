@@ -72,8 +72,16 @@ const IJPApi = ((gmap)=> {
 			pm10Data: '.station__data-pm1',
 			pm25Data: '.station__data-pm2',
 			IJPDataContainer: '.data__container-ijp',
+			lastUpdateContainer: '.weather__lastupdate-content',
 			cond: '.weather__currnet-condition',
-			temp: '.weather__currnet-temp'
+			temp: '.weather__currnet-temp',
+			fTemp: '.feelstemp__container',
+			windDir: '.moredata__wind-dir',
+			windSp: '.windspeed-speed',
+			pressure: '.pressure__container',
+			precip: '.precip__container',
+			humidity: '.humidity__container'
+
 		},
 		ijpApi: {
 			apiKey: '1487184056',
@@ -141,18 +149,89 @@ const IJPApi = ((gmap)=> {
 
 	// insert APIXU - weather data to DOM
 	const insertAPIXUData = (weatherData)=> {
-		let currentCondition,
+		let currentCondition, lastUpdate, windDirection,
+			lastUpdateCont = document.querySelector(appOptions.domStrings.lastUpdateContainer),
 			currentCond = document.querySelector(appOptions.domStrings.cond),
-			currentTemp = document.querySelector(appOptions.domStrings.temp).firstElementChild;
+			currentTemp = document.querySelector(appOptions.domStrings.temp).firstElementChild,
+			feelsTemp = document.querySelector(appOptions.domStrings.fTemp).firstElementChild,
+			windDir = document.querySelector(appOptions.domStrings.windDir),
+			windSpeed = document.querySelector(appOptions.domStrings.windSp),
+			pressureVal = document.querySelector(appOptions.domStrings.pressure).firstElementChild,
+			precipVal = document.querySelector(appOptions.domStrings.precip).firstElementChild,
+			humidityVal = document.querySelector(appOptions.domStrings.humidity).firstElementChild;
+
+		// insert last update time to DOM
+		lastUpdate = lastUpdateInfo(weatherData);
+		lastUpdateCont.innerHTML = `${lastUpdate[0]} - ${lastUpdate[1]}`;
 
 		// insert current condition to the DOM
 		currentCondition = checkCurrentWeatherCondition(weatherData);
 		currentCond.innerHTML = currentCondition;
 		
-		//insert currnet tem to the DOM
+		// insert currnet temp to the DOM
 		currentTemp.innerHTML = weatherData.current.temp_c;
+
+		// insert feels temp to DOM
+		feelsTemp.innerHTML = weatherData.current.feelslike_c;
+
+		// insert wind info to DOM
+		windDirection = checkWindDirection(weatherData);
+		windDir.innerHTML = windDirection;
+		windSpeed.innerHTML = weatherData.current.wind_kph;
+
+		// insert pressure info to DOM
+		pressureVal.innerHTML = weatherData.current.pressure_mb;
+
+		// insert precipitation info to DOM
+		precipVal.innerHTML = weatherData.current.precip_mm;
+
+		// insert humidity info to DOM
+		humidityVal.innerHTML = weatherData.current.humidity;
+	};
+	// last update info 
+	const lastUpdateInfo = (weatherData)=> {
+		let date = weatherData.current.last_updated,
+			splitedDate = date.split(" ");
+			
+			return splitedDate;
 	};
 
+	// check the wind direction
+	const checkWindDirection = (weatherData)=> {
+		if(weatherData.current.wind_dir === 'N') {
+			return '<i class="wi wi-wind wi-from-n"></i>';
+		} else if(weatherData.current.wind_dir === 'NNE') {
+			return '<i class="wi wi-wind wi-from-nne"></i>';
+		} else if(weatherData.current.wind_dir === 'NE') {
+			return '<i class="wi wi-wind wi-from-ne"></i>';
+		} else if(weatherData.current.wind_dir === 'ENE') {
+			return '<i class="wi wi-wind wi-from-ene"></i>';
+		} else if(weatherData.current.wind_dir === 'E') {
+			return '<i class="wi wi-wind wi-from-e"></i>';
+		} else if(weatherData.current.wind_dir === 'ESE') {
+			return '<i class="wi wi-wind wi-from-ese"></i>';
+		} else if(weatherData.current.wind_dir === 'SE') {
+			return '<i class="wi wi-wind wi-from-se"></i>';
+		} else if(weatherData.current.wind_dir === 'SSE') {
+			return '<i class="wi wi-wind wi-from-sse"></i>';
+		} else if(weatherData.current.wind_dir === 'S') {
+			return '<i class="wi wi-wind wi-from-s"></i>';
+		} else if(weatherData.current.wind_dir === 'SSW') {
+			return '<i class="wi wi-wind wi-from-ssw"></i>';
+		} else if(weatherData.current.wind_dir === 'SW') {
+			return '<i class="wi wi-wind wi-from-sw"></i>';
+		} else if(weatherData.current.wind_dir === 'WSW') {
+			return '<i class="wi wi-wind wi-from-wsw"></i>';
+		} else if(weatherData.current.wind_dir === 'W') {
+			return '<i class="wi wi-wind wi-from-w"></i>';
+		} else if(weatherData.current.wind_dir === 'WNW') {
+			return '<i class="wi wi-wind wi-from-wnw"></i>';
+		} else if(weatherData.current.wind_dir === 'NW') {
+			return '<i class="wi wi-wind wi-from-nw"></i>';
+		} else if(weatherData.current.wind_dir === 'NNW') {
+			return '<i class="wi wi-wind wi-from-nnw"></i>';
+		}
+	}
 	// check for current condition
 	const checkCurrentWeatherCondition = (weatherData)=> {
 		 if (weatherData.current.is_day === 1) {
@@ -290,7 +369,6 @@ const IJPApi = ((gmap)=> {
 	// public functions 
 	return {
 		init: ()=> {
-			console.log('app is running!');
 			connectionToIJP();
 			connectionToAPIXU();
 		}
