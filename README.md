@@ -19,3 +19,6 @@ Poniewaz jakość powietrza zeleży bardzo od pogody jaka panuje w danym momenci
 * 1 - pobieranie danych z API LOOKO2
 * 2 - pobieranie danych z API APIXU
 * 3 - wyświetlanie mapy Google wraz z lokalizacją stacji pomiarowych
+
+### Wersja 0.9
+* 1 - dodanie danych pogodowych

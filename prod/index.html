@@ -7,13 +7,12 @@
 		<meta name="keywords" content="Indeks Jakości Powietrza, Opole, SMOG, LOOKO2">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&amp;subset=latin-ext" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
-		<!-- <link rel="stylesheet" type="text/css" href="css/weather-icons-wind.min.css"> -->
+		<link rel="stylesheet" type="text/css" href="assets/css/weather-icons-wind.min.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/weather-icons.min.css">
 		<title>IJP w Opolu</title>
 	</head>
 	<body>
-	<div class="flex flex__direction-reverse">
-		<div id="map"></div> <!-- google map-->
+	<div class="flex">
 		<div id="api__container">
 			<div class="flex flex__col-mob">
 				<div class="data__container flex flex__col-mob">
@@ -23,16 +22,58 @@
 				<div class="data__container flex flex__col-mob">
 					<h1 class="data__container-header">Aktualna pogoda w Opolu</h1>
 					<div class="data__container-weather data__container-graybcg">
+						<div class="weather__lastupdate">
+							<h2 class="weather__lastupdate-header">Ostatnia aktualizacja</h2>
+							<p class="weather__lastupdate-content"></p>
+						</div>
 						<div class="flex flex_row flex__space-evenly">
 							<div class="weather__currnet-condition"></div>
 							<div class="weather__currnet-temp">
 								<span></span><span>&ordmC</span>
 							</div>
 						</div>
+						<div class="weather__moredata">
+							<div class="weather__moredata-feelstemp">
+								<h3>temperatura odczuwalna</h3> 
+								<div class="feelstemp__container">
+									<span></span> <span>&ordmC</span>
+								</div>
+							</div>
+							<div class="weather__moredata-wind">
+								<h3>Wiatr</h3>
+								<div class="flex">
+									<div class="moredata__wind-dir"></div>
+									<div class="moredata__windspeed">
+										<span class="windspeed-speed"></span> <span class="windspeed-units">km/h</span>
+									</div>
+								</div>
+							</div>
+							<div class="weather__moredata-presure">
+								<h3>ciśnienie</h3>
+								<div class="pressure__container"> 
+									<span></span> <span>mb</span>
+								</div>
+							</div>
+							<div class="weather__moredata-precip">
+								<h3>Opady</h3>
+								<div class="precip__container"> 
+									<span></span> <span>mm</span>
+								</div>
+							</div>
+							<div class="weather__moredata-humidity">
+								<h3>wilgotność</h3>
+								<div class="humidity__container">
+									<span></span> <span>%</span>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div> <!-- end of weather container -->	
 			</div>
 		</div> <!-- end of api container-->
+		<div class="map__container">
+			<div id="map"></div> <!-- google map-->
+		</div>
 	</div>
 		<script type="text/javascript" src="assets/js/app.js"></script>
 	</body>
