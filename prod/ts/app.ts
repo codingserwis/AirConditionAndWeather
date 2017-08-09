@@ -1,6 +1,17 @@
 const GoogleMap = (()=> {
 	//config for google maps
-	const mapConfig = {
+	type MapConfig = {
+		basicMapConf: {
+			domStr: string, 
+			zoom: number,
+			position: {
+				lat: number,
+				long: number
+			} 
+		}
+	};
+
+	const mapConfig: MapConfig = {
 		basicMapConf: {
 			domStr: 'map',
 			zoom: 13,
@@ -12,7 +23,9 @@ const GoogleMap = (()=> {
 	};
 
 	// map markers title and positions
-	const IJPMarkers = [
+	type MapMarkers = [[string, number, number]];
+
+	const IJPMarkers: MapMarkers = [
 		['Pasieka', 50.6619, 17.9201],
 		['Chabry', 50.6791, 17.9265],
 		['LO II', 50.6733, 17.925],
@@ -65,7 +78,7 @@ const GoogleMap = (()=> {
 
 
 const IJPApi = ((gmap)=> {
-// TS type
+// TS type config
 type Config = {domStrings: {
 					ijpData: string, 
 					pm10Data: string,
@@ -318,7 +331,7 @@ type Config = {domStrings: {
 	
 	// change the name of teh IJP station
 	const nameChange = (data: {Name: string}): string => {
-		let station;
+		let station: string;
 
 		if (data.Name === 'Opole_Opolski_Alarm_Smogowy_Grud') {
 			station = 'Grudzice';
@@ -340,7 +353,7 @@ type Config = {domStrings: {
 
 	// setting the bcg color of IJP container
 	const checkValueOfIJP = (data: {IJP: number}): string => {
-		let ijpBcg;
+		let ijpBcg: string;
 
 		if (data.IJP >= 0 && data.IJP <= 1) {
 			ijpBcg = 'data__bcg-dgreen';
@@ -361,7 +374,7 @@ type Config = {domStrings: {
 
 	// setting the bcg color of PM2.5 container
 	const checkValueOfPM25 = (data: {PM25: number}): string => {
-		let pm25Bcg;
+		let pm25Bcg: string;
 
 		if (data.PM25 >= 0 && data.PM25 <= 12) {
 		 	pm25Bcg = 'data__bcg-dgreen';
@@ -382,7 +395,7 @@ type Config = {domStrings: {
 
 	// setting the bcg color of PM10 container
 	const checkValueOfPM10 = (data: {PM10: number}): string => {
-		let pm10Bcg;
+		let pm10Bcg: string;
 
 		if (data.PM10 >= 0 && data.PM10 <= 20) {
 			pm10Bcg = 'data__bcg-dgreen';

@@ -58,12 +58,27 @@ gulp.task('browser-sync', function() {
 });
 
 // TypeScript
-gulp.task("typescript", function () {
-    return tsProject.src()
-        .pipe(tsProject())
-        .js.pipe(gulp.dest("dist/assets/js"))
+gulp.task('typescript', function() {
+    var tsResult = tsProject.src()
+        .pipe(tsProject());
+
+        return tsResult
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/assets/js'))
         .pipe(browserSync.stream());
 });
+
+
+
+
+
+
+// gulp.task("typescript", function () {
+//     return tsProject.src()
+//         .pipe(tsProject())
+//         .js.pipe(gulp.dest("dist/assets/js"))
+//         .pipe(browserSync.stream());
+// });
 // gulp.task('typescript', function() {
 //     return tsProject.src()
 //         .pipe(tsProject())
@@ -77,12 +92,7 @@ gulp.task("typescript", function () {
 //         }))
 //         .pipe(gulp.dest('dist/assets/js'));
 // });
-// uglify
-gulp.task('ugly', function() {
-    return gulp.src('prod/assets/js/*.js')
-        .pipe(uglify())
-        .pipe(gulp.dest('prod/assets/js'));
-});
+
 // watch for files
 gulp.task('watch', ['browser-sync', 'sass'], function() {
     gulp.watch('prod/sass/**/*.scss', ['sass']);
