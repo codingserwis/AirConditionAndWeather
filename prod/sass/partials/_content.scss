@@ -184,6 +184,12 @@ $text-orange: map-get($font-colors, orange);
 		font-weight: 400;
 	}
 }
+.moredata__wind-str {
+	span {
+		font-size: 1.225rem;
+		font-weight: 400;
+	}
+}
 .moredata__windspeed {
 	.windspeed-speed {
 		font-size: 3.0rem;

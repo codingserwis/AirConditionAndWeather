@@ -270,25 +270,25 @@ class Ijp {
 		pm10BcgColor = checkValueOfPM10();
 
 		html = `<div class="station__container">
-						<h2 class="station__container-header">${stationName}</h2>
-						<div class="station__container-data flex flex__row flex__justify-between">
-							<div class="station__data-ijp ${ijpBcgColor}">
-								<h3>IJP</h3>
-								<p class="data__ijp">${ijpData.IJP}</p>
-								<p class="text__ijp">${ijpData.IJPString}</p>
-							</div>
-							<div class="station__data-pm2 ${pm25BcgColor}">
-								<h3>PM 2.5</h3>
-								<p class="data__pm2">${ijpData.PM25}</p>
-								<p class="units">&microg/m<sup>3</sup></p>
-							</div>
-							<div class="station__data-pm1 ${pm10BcgColor}">
-								<h3>PM 10</h3>
-								<p class="data__pm1">${ijpData.PM10}</p>
-								<p class="units">&microg/m<sup>3</sup></p>
-							</div>
+					<h2 class="station__container-header">${stationName}</h2>
+					<div class="station__container-data flex flex__row flex__justify-between">
+						<div class="station__data-ijp ${ijpBcgColor}">
+							<h3>IJP</h3>
+							<p class="data__ijp">${ijpData.IJP}</p>
+							<p class="text__ijp">${ijpData.IJPString}</p>
 						</div>
-					</div>`;
+						<div class="station__data-pm2 ${pm25BcgColor}">
+							<h3>PM 2.5</h3>
+							<p class="data__pm2">${ijpData.PM25}</p>
+							<p class="units">&microg/m<sup>3</sup></p>
+						</div>
+						<div class="station__data-pm1 ${pm10BcgColor}">
+							<h3>PM 10</h3>
+							<p class="data__pm1">${ijpData.PM10}</p>
+							<p class="units">&microg/m<sup>3</sup></p>
+						</div>
+					</div>
+				</div>`;
 		dataContainer.insertAdjacentHTML('beforeend', html);
 	}
 }
@@ -322,19 +322,20 @@ class weather {
 			currentTempContainer: '.weather__currnet-temp',
 			feelsTempContainer: '.feelstemp__container',
 			windDirContainer: '.moredata__wind-dir',
+			windDirStringContainer: '.moredata__wind-str',
 			windSpeedContainer: '.windspeed-speed',
 			pressureContainer: '.pressure__container',
 			precipContainer: '.precip__container',
 			humidityContainer: '.humidity__container'
 		};
 
-		let lastUpdate, 
-			currentCondition, windDirection,
+		let lastUpdate, currentCondition, windDirection, 
 			lastUpdateCont = document.querySelector(weatherDomStr.lastUpdateContainer),
 			currentCond = document.querySelector(weatherDomStr.currentCondContainer),
 			currentTemp = document.querySelector(weatherDomStr.currentTempContainer).firstElementChild,
 			feelsTemp = document.querySelector(weatherDomStr.feelsTempContainer).firstElementChild,
 			windDir = document.querySelector(weatherDomStr.windDirContainer),
+			windDirString = document.querySelector(weatherDomStr.windDirStringContainer).firstElementChild,
 			windSpeed = document.querySelector(weatherDomStr.windSpeedContainer),
 			pressure = document.querySelector(weatherDomStr.pressureContainer).firstElementChild,
 			precip = document.querySelector(weatherDomStr.precipContainer).firstElementChild,
@@ -428,6 +429,7 @@ class weather {
 		// insert wind direction and speed to DOM
 		windDirection = checkWindDirection();
 		windDir.innerHTML = windDirection;
+		windDirString.innerHTML = weatherData.current.wind_dir;
 		windSpeed.innerHTML = weatherData.current.wind_kph;
 
 		// insert pressure to DOM

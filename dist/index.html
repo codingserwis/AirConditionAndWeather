@@ -41,8 +41,13 @@
 							</div>
 							<div class="weather__moredata-wind">
 								<h3>Wiatr</h3>
-								<div class="flex">
-									<div class="moredata__wind-dir"></div>
+								<div class="flex flex__space-evenly flex__valign-center">
+									<div>
+										<div class="moredata__wind-dir"></div>
+										<div class="moredata__wind-str">
+											<span></span>
+										</div>
+									</div>
 									<div class="moredata__windspeed">
 										<span class="windspeed-speed"></span> <span class="windspeed-units">km/h</span>
 									</div>
@@ -75,19 +80,6 @@
 			<div id="map"></div> <!-- google map-->
 		</div>
 	</div>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.17/system.js"></script>
-	<script>
-		SystemJS.config({
-			baseURL: '/assets/js',
-			packages: {
-				'/': {
-					defaultExtension: 'js'
-				}
-			}
-		});
-
-		SystemJS.import('app.js');
-	  </script> -->
 		<script type="text/javascript" src="assets/js/app.js"></script>
 	</body>
 </html>
