@@ -6,7 +6,9 @@ var gulp = require('gulp'),
     gulpif = require('gulp-if'),
     babel = require('gulp-babel'),
     uncss = require('gulp-uncss'),
-    uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify'),
+    ts = require('gulp-typescript'),
+    tsProject = ts.createProject('tsconfig.json');
 
 
 // sass compilation
@@ -37,11 +39,11 @@ gulp.task('uncss', function() {
 // copying files and uglify js 
 gulp.task('copy', function() {
     return gulp.src('prod/**/*.+(html|js)')
-        .pipe(gulpif('*.js', sourceMaps.init()))
-        .pipe(gulpif('*.js', babel({presets: ['es2015']})))
-        .pipe(gulpif('*.js', uglify()))
-        .pipe(gulpif('*.js', sourceMaps.write('.')))
-        .pipe(gulpif('*.js', gulp.dest('dist/assets/')))
+        //.pipe(gulpif('*.js', sourceMaps.init()))
+        //.pipe(gulpif('*.js', babel({presets: ['es2015']})))
+        //.pipe(gulpif('*.js', uglify()))
+        //.pipe(gulpif('*.js', sourceMaps.write('.')))
+        //.pipe(gulpif('*.js', gulp.dest('dist/assets/')))
         .pipe(gulpif('*.html', gulp.dest('dist')))
         .pipe(browserSync.stream());
 });
@@ -50,15 +52,52 @@ gulp.task('copy', function() {
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
-            baseDir: 'dist'
+            baseDir: './dist'
         }
     });
 });
+
+// TypeScript
+gulp.task('typescript', function() {
+    var tsResult = tsProject.src()
+        .pipe(tsProject());
+
+        return tsResult
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/assets/js'))
+        .pipe(browserSync.stream());
+});
+
+
+
+
+
+
+// gulp.task("typescript", function () {
+//     return tsProject.src()
+//         .pipe(tsProject())
+//         .js.pipe(gulp.dest("dist/assets/js"))
+//         .pipe(browserSync.stream());
+// });
+// gulp.task('typescript', function() {
+//     return tsProject.src()
+//         .pipe(tsProject())
+//         .js.pipe(gulp.dest('dist/assets/js'));
+// });
+// gulp.task('typescript', function () {
+//     return gulp.src('prod/**/*.ts')
+//         .pipe(ts({
+//             noImplicitAny: true,
+//             outFile: 'output.js'
+//         }))
+//         .pipe(gulp.dest('dist/assets/js'));
+// });
 
 // watch for files
 gulp.task('watch', ['browser-sync', 'sass'], function() {
     gulp.watch('prod/sass/**/*.scss', ['sass']);
     gulp.watch('prod/**/*.+(html|js)', ['copy']);
+    gulp.watch('prod/**/*.ts', ['typescript']);
 });
 
 // gulp default task
