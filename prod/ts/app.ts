@@ -174,7 +174,7 @@ class Ijp {
 
 		let html: string, stationName: string, ijpBcgColor: string, pm25BcgColor: string, pm10BcgColor: string,
 		dataContainer = document.querySelector(ijpDataStr.ijpContainer);
-console.log(ijpData);
+
 		// change the name of teh IJP station
 		const nameChange: InterStringFunc = () => {
 			let station: string;
