@@ -75,13 +75,61 @@
 
 // })();
 /**
+ * +++ Interfaces +++
+ */
+
+// for functions that returns STRING and don't have any parameters
+interface InterStringFunc {
+	(): string;
+}
+
+// fomr IJP data object
+interface InterIJPData {
+	[propName: string]: any;
+}
+
+// for weather data object
+interface InterWeatherData {
+	current: {
+		condition?: {
+			[propName: string]: any;
+		}
+		[propName: string]: any;
+	};
+	location?: {};
+}
+// for IJP DOM string
+interface InterIjpDomString {
+	ijpContainer: string;
+}
+
+// for APIXU connection data
+interface InterApixuConnData {
+	apiKey: string;
+	location: string;
+}
+
+// for IJP connection data
+interface InterIJPConnData {
+	apiKey: string;
+	pointsId: {
+		chabry: string;
+		pulaskiego: string;
+		pileckiego: string;
+		pasieka: string;
+		nowaWiesKrol: string;
+		grudzice: string;
+		osAlSolid: string;	
+	}
+}
+/**
  * +++ Static classes +++
  * +++ +++ Connection status checking method
  * +++ +++ Conversion response to object
  */
 class ConnectionHelpers {
 	// check the status of the connection
-	static connectionStatus(response) {
+	static connectionStatus(response): {} {
 		if(response.status === 200) {
 			return Promise.resolve(response);
 		} else {
@@ -90,8 +138,8 @@ class ConnectionHelpers {
 	}
 
 	// convert recived data
-	static getData(response) {
-		let data;
+	static getData(response): {} {
+		let data: {};
 		return data = response.json();
 	}
 }
@@ -100,7 +148,7 @@ class Ijp {
 	key: string;
 	points: {};
 
-	constructor(key, points) {
+	constructor(key: string, points: {}) {
 		this.key = key;
 		this.points = points;
 	}
@@ -119,16 +167,17 @@ class Ijp {
 	}
 
 	//insert IJP Data to DOM
-	private insertIJPData(ijpData) {
-		const ijpDataStr = {
+	private insertIJPData(ijpData: InterIJPData) {
+		const ijpDataStr: InterIjpDomString = {
 			ijpContainer: '.data__container-ijp'
 		};
-		let html, stationName, ijpBcgColor, pm25BcgColor, pm10BcgColor,
-		dataContainer = document.querySelector(ijpDataStr.ijpContainer);
 
+		let html: string, stationName: string, ijpBcgColor: string, pm25BcgColor: string, pm10BcgColor: string,
+		dataContainer = document.querySelector(ijpDataStr.ijpContainer);
+console.log(ijpData);
 		// change the name of teh IJP station
-		const nameChange = () => {
-			let station;
+		const nameChange: InterStringFunc = () => {
+			let station: string;
 
 			if (ijpData.Name === 'Opole_Opolski_Alarm_Smogowy_Grud') {
 				station = 'Grudzice';
@@ -149,8 +198,8 @@ class Ijp {
 		};
 
 		// setting the bcg color of IJP container
-		const checkValueOfIJP = ()=> {
-			let ijpBcg;
+		const checkValueOfIJP: InterStringFunc = () => {
+			let ijpBcg: string;
 
 			if (ijpData.IJP >= 0 && ijpData.IJP <= 1) {
 				ijpBcg = 'data__bcg-dgreen';
@@ -169,8 +218,8 @@ class Ijp {
 		};
 
 		// setting the bcg color of PM2.5 container
-		const checkValueOfPM25 = () => {
-			let pm25Bcg;
+		const checkValueOfPM25: InterStringFunc = () => {
+			let pm25Bcg: string;
 
 			if (ijpData.PM25 >= 0 && ijpData.PM25 <= 12) {
 				pm25Bcg = 'data__bcg-dgreen';
@@ -189,8 +238,8 @@ class Ijp {
 		};
 
 		// setting the bcg color of PM10 container
-		const checkValueOfPM10 = () => {
-			let pm10Bcg;
+		const checkValueOfPM10: InterStringFunc = () => {
+			let pm10Bcg: string;
 
 			if (ijpData.PM10 >= 0 && ijpData.PM10 <= 20) {
 				pm10Bcg = 'data__bcg-dgreen';
@@ -249,7 +298,7 @@ class weather {
 	key: string;
 	location: string;
 	
-	constructor(key, location) {
+	constructor(key: string, location: string) {
 		this.key = key;
 		this.location = location;
 	}
@@ -266,7 +315,7 @@ class weather {
 	}
 
 	// insert data to DOM
-	private insertDataToDom (weatherData) {
+	private insertDataToDom (weatherData: InterWeatherData) {
 		const weatherDomStr = {
 			lastUpdateContainer: '.weather__lastupdate-content',
 			currentCondContainer: '.weather__currnet-condition',
@@ -279,7 +328,8 @@ class weather {
 			humidityContainer: '.humidity__container'
 		};
 
-		let lastUpdate, currentCondition, windDirection,
+		let lastUpdate, 
+			currentCondition, windDirection,
 			lastUpdateCont = document.querySelector(weatherDomStr.lastUpdateContainer),
 			currentCond = document.querySelector(weatherDomStr.currentCondContainer),
 			currentTemp = document.querySelector(weatherDomStr.currentTempContainer).firstElementChild,
@@ -291,14 +341,16 @@ class weather {
 			humidity = document.querySelector(weatherDomStr.humidityContainer).firstElementChild;
 
 		// last update info 
-		const lastUpdateInfo = ()=> {
-			let date = weatherData.current.last_updated,
+		const lastUpdateInfo = (): any[] => {
+			let date: string, splitedDate: any[];
+
+				date = weatherData.current.last_updated;
 				splitedDate = date.split(" ");
 				return splitedDate;
 		};
 
 		// check for current condition
-		const checkCurrentWeatherCondition = ()=> {
+		const checkCurrentWeatherCondition: InterStringFunc = () => {
 			if (weatherData.current.is_day === 1) {
 				if (weatherData.current.condition.code === 1000) {
 					return '<i class="wi wi-day-sunny"></i>';
@@ -323,7 +375,7 @@ class weather {
 		};
 
 		// check wind direction
-		const checkWindDirection = ()=> {
+		const checkWindDirection: InterStringFunc = () => {
 					if(weatherData.current.wind_dir === 'N') {
 						return '<i class="wi wi-wind wi-from-n"></i>';
 					} else if(weatherData.current.wind_dir === 'NNE') {
@@ -390,7 +442,7 @@ class weather {
 }
 
 // apixu connection data
-const apixuApi = {
+const apixuApi: InterApixuConnData = {
 	apiKey: '48147044f89b4001831152133171402',
 	location: 'Opole'
 };
@@ -398,7 +450,7 @@ const apixuData = new weather(apixuApi.apiKey, apixuApi.location);
 apixuData.connectionToAPIXU();
 
 // IJP connection data
-const ijpApi = {
+const ijpApi: InterIJPConnData = {
 	apiKey: '1487184056',
 	pointsId: {
 		chabry: '5ccf7fc18200',
