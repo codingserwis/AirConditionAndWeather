@@ -74,9 +74,29 @@
 // 	};
 
 // })();
+/**
+ * +++ Static classes +++
+ * +++ +++ Connection status checking method
+ * +++ +++ Conversion response to object
+ */
+class ConnectionHelpers {
+	// check the status of the connection
+	static connectionStatus(response) {
+		if(response.status === 200) {
+			return Promise.resolve(response);
+		} else {
+			return Promise.reject(console.log(response.statusText));
+		}
+	}
 
+	// convert recived data
+	static getData(response) {
+		let data;
+		return data = response.json();
+	}
+}
 // IJP connection class 
-class ijp {
+class Ijp {
 	key: string;
 	points: {};
 
@@ -92,24 +112,10 @@ class ijp {
 			method: 'GET'
 			});
 			fetch(request)
-				.then(this.connectionStatus)
-				.then(this.getData)
+				.then(ConnectionHelpers.connectionStatus)
+				.then(ConnectionHelpers.getData)
 				.then(this.insertIJPData) 
 		};
-	}
-
-	// check the status of the connection
-	private connectionStatus(response) {
-		if(response.status === 200) {
-			return Promise.resolve(response);
-		} else {
-			return Promise.reject(console.log(response.statusText));
-		}
-	}
-	// convert recived data
-	private getData(response) {
-		let data;
-		return data = response.json();
 	}
 
 	//insert IJP Data to DOM
@@ -254,25 +260,11 @@ class weather {
 			method: 'GET'
 		});
 		fetch(request)
-			.then(this.connectionStatus)
-			.then(this.getData)
+			.then(ConnectionHelpers.connectionStatus)
+			.then(ConnectionHelpers.getData)
 			.then(this.insertDataToDom);
 	}
 
-	// check the status of the connection
-	private connectionStatus (response) {
-		if(response.status === 200) {
-			return Promise.resolve(response);
-		} else {
-			return Promise.reject(console.log(response.statusText));
-		}
-	}
-
-	// convert recived data
-	private getData (response) {
-		let data;
-		return data = response.json();
-	}
 	// insert data to DOM
 	private insertDataToDom (weatherData) {
 		const weatherDomStr = {
@@ -418,5 +410,5 @@ const ijpApi = {
 		osAlSolid: 'a020a6036801'
 	}
 }
-const ijpData = new ijp(ijpApi.apiKey, ijpApi.pointsId);
+const ijpData = new Ijp(ijpApi.apiKey, ijpApi.pointsId);
 ijpData.connectionToIJP();
