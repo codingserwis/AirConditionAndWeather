@@ -110,7 +110,7 @@ $text-orange: map-get($font-colors, orange);
 	font-weight: 400;
 }
 .text__ijp, .units {
-	font-size: .9rem;
+	font-size: .900rem;
 		@include for-desktop {
 			font-size: .825rem;
 		}
